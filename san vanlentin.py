@@ -4,14 +4,14 @@ import random
 # Configuración de la página
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹")
 
-# Estilos personalizados para el fondo degradado y la carta
+# Estilos personalizados: Fondo degradado y diseño de carta
 st.markdown("""
     <style>
     .stApp {
         background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
     }
     .carta-contenedor {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.95);
         padding: 40px;
         border-radius: 30px;
         border-left: 10px solid #ff4b6b;
@@ -19,14 +19,16 @@ st.markdown("""
         color: #5d0e24;
         margin-bottom: 25px;
         text-align: justify;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(10px);
     }
     .titulo-principal {
         color: #ffffff;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         text-align: center;
         font-family: 'serif';
-        font-size: 40px;
+        font-size: 38px;
+        font-weight: bold;
+        margin-bottom: 20px;
     }
     .stButton>button {
         width: 100%;
@@ -37,24 +39,36 @@ st.markdown("""
         font-weight: bold;
         font-size: 20px;
         border: none;
+        box-shadow: 0px 4px 15px rgba(255, 75, 107, 0.3);
+    }
+    .stButton>button:hover {
+        background-color: #ff758f;
+        transform: scale(1.02);
     }
     .firma {
         text-align: right;
         font-style: italic;
         font-weight: bold;
         color: #c9184a;
-        margin-top: 20px;
+        margin-top: 25px;
+        font-size: 20px;
+    }
+    div[data-testid="stImage"] > img {
+        display: block;
+        margin: 0 auto;
+        border-radius: 20px;
+        border: 4px solid white;
     }
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown("<h1 class='titulo-principal'>❤️ Una propuesta desde el corazón</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='titulo-principal'>✨ Una propuesta especial ✨</h1>", unsafe_allow_html=True)
 
-# ESTE ES EL TEXTO QUE ME PEDISTE AGREGAR
+# EL TEXTO QUE ME PEDISTE
 st.markdown(f"""
     <div class="carta-contenedor">
-        <p style="font-size: 20px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
-        <p style="font-size: 18px; line-height: 1.8;">
+        <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
+        <p style="font-size: 19px; line-height: 1.8;">
             Parece que fue ayer cuando empezamos este camino, y ya han pasado <b>10 maravillosos meses</b>. 
             En este tiempo, no solo te has convertido en mi novia, sino en mi mejor amiga, en mi refugio y en la razón por la que siempre tengo una sonrisa al despertar. <br><br>
             A tu lado, he aprendido que el amor no es perfecto, pero que contigo se siente real, puro y lleno de luz. 
@@ -70,23 +84,32 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
+# Intento de cargar la foto.jpg que tienes en tu GitHub
 try:
     st.image("foto.jpg", use_container_width=True)
 except:
-    st.info("Cargando nuestra foto especial... ❤️")
+    st.info("Cargando nuestra foto... ❤️")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
+
 with col1:
     if st.button("¡SÍ, ACEPTO! 😍"):
         st.balloons()
         st.snow()
-        st.success("¡Me haces el hombre más feliz del mundo! ¡Te amo demasiado! ❤️")
+        st.success("¡Me haces el hombre más feliz del mundo! ¡Te amo demasiado, mi niña! ❤️")
 
 with col2:
     if st.button("No... 😢"):
-        st.warning(random.choice(["¿Segura? Intenta el otro botón... ✨", "¡Error! Inténtalo de nuevo. 😊"]))
+        frases_no = [
+            "¿Estás segura? El botón rosa tiene mejores premios... ✨",
+            "¡Error! Este botón está bloqueado por el destino. 😊",
+            "Piénsalo bien, Lubaloo... ¡habrá muchas sorpresas! 🍫",
+            "Mi corazón dice que querías presionar el botón de la izquierda. 🌹"
+        ]
+        st.warning(random.choice(frases_no))
 
+# Pie de página
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: white; font-weight: bold;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: white; font-weight: bold; font-size: 16px;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
