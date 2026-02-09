@@ -61,24 +61,7 @@ st.markdown("""
 
 st.markdown("<h1 class='titulo-san-valentin'>💖 Una confesión para ti...</h1>", unsafe_allow_html=True)
 
-# Carta con más sentimiento para Lubaloo
-st.markdown(f"""
-    <div class="carta-contenedor">
-        <p style="font-size: 20px; font-weight: bold;">Mi querida Lubaloo,</p>
-        <p style="font-size: 18px; line-height: 1.8;">
-            Hoy me detuve a pensar en todo lo que hemos vivido en estos <b>10 meses</b> y no pude evitar sonreír. 
-            Llegaste a mi vida para pintarla de colores que no conocía, y cada día a tu lado es una lección de felicidad y complicidad. <br><br>
-            Agradezco cada risa compartida, cada palabra de aliento y esa forma tan única que tienes de hacerme sentir en casa, sin importar dónde estemos. 
-            Eres mi apoyo, mi mejor amiga y el amor que quiero cuidar siempre. <br><br>
-            Se acerca <b>San Valentín</b>, y aunque todos los días trato de demostrarte lo que siento, hoy quiero hacértelo oficial: 
-            no hay nadie más en este mundo con quien quiera compartir mis sueños y mi tiempo.
-        </p>
-        <p style="text-align: center; font-weight: bold; font-size: 24px; color: #ff4b6b; margin-top: 25px;">
-            ¿Quieres ser mi San Valentín este año y todos los que vengan? 🌹
-        </p>
-        <p class="firma">Con todo mi amor, Justin</p>
-    </div>
-    """, unsafe_allow_html=True)
+# Carta con tu texto personalizado st.markdown(f""" <div class="carta-contenedor"> <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p> <p style="font-size: 19px; line-height: 1.9;"> Parece que fue ayer cuando empezamos este camino, y ya han pasado <b>10 maravillosos meses</b>. En este tiempo, no solo te has convertido en mi novia, sino en mi mejor amiga, en mi refugio y en la razón por la que siempre tengo una sonrisa al despertar. <br><br> A tu lado, he aprendido que el amor no es perfecto, pero que contigo se siente real, puro y lleno de luz. Gracias por cada risa, por cada palabra de apoyo cuando las cosas se ponen difíciles y por enseñarme a ser una mejor versión de mí mismo. Eres la persona más especial que conozco y cada día que pasa me convenzo más de la suerte que tengo de tenerte.<br><br> Se acerca <b>San Valentín</b>, un día que celebra lo que nosotros vivimos a diario. Por eso, no quería que fuera una fecha cualquiera. Quiero que sea un momento para recordarte cuánto te amo y lo mucho que deseo seguir caminando de tu mano. </p> <p style="text-align: center; font-weight: bold; font-size: 26px; color: #ff4b6b; margin-top: 30px; font-family: 'serif';"> ¿Me harías el honor de ser mi San Valentín? 🌹 </p> <p class="firma">Con todo mi amor, Justin</p> </div> """, unsafe_allow_html=True) 
 
 # CARGA DE LA FOTO QUE SUBISTE
 try:
