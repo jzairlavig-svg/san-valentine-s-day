@@ -96,6 +96,3 @@ with col2:
 
 st.markdown("---")
 st.markdown("<p style='text-align: center; color: white; font-weight: bold;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
-# Pie de página
-st.markdown("---")
-st.markdown("<p style='text-align: center; color: white; font-weight: bold; font-size: 16px;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
