@@ -30,7 +30,7 @@ st.markdown("""
         text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         text-align: center;
         font-family: 'serif';
-        font-size: 45px;
+        font-size: 40px;
         margin-bottom: 20px;
     }
 
@@ -73,33 +73,29 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown("<h1 class='titulo-principal'>❤️ Lo que mi corazón dicta...</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='titulo-principal'>❤️ Una propuesta desde el corazón</h1>", unsafe_allow_html=True)
 
-# Carta extendida con sentimientos profundos
+# Carta con tu texto personalizado
 st.markdown(f"""
     <div class="carta-contenedor">
-        <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi amada Lubaloo,</p>
+        <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
         <p style="font-size: 19px; line-height: 1.9;">
-            A veces me detengo a intentar explicar cómo en tan solo <b>10 meses</b> lograste cambiar mi mundo por completo. 
-            Llegaste sin avisar y te convertiste en la respuesta a todas esas preguntas que ni siquiera sabía que tenía. 
-            Contigo, cada día es una oportunidad nueva para descubrir que la felicidad no es un destino, sino cada momento 
-            que paso escuchando tu risa o simplemente sintiendo tu presencia a mi lado. <br><br>
-            Gracias por ser esa persona que me conoce mejor que nadie, por tu paciencia infinita y por la forma en que 
-            haces que hasta los días más grises brillen con tu luz. Eres mi refugio seguro y mi aventura favorita. 
-            Lo que hemos construido juntos es mi tesoro más grande, y cada pequeño recuerdo es una página de la historia 
-            que quiero seguir escribiendo por el resto de mi vida. <br><br>
-            Se acerca <b>San Valentín</b>, y aunque sé que el amor se celebra a diario, hoy quiero pedirte formalmente 
-            que seas mi compañera en esta fecha tan especial. No porque necesite un día para amarte, sino porque quiero 
-            aprovechar cada excusa del calendario para decirte que eres lo más hermoso que me ha pasado.
+            Parece que fue ayer cuando empezamos este camino, y ya han pasado <b>10 maravillosos meses</b>. 
+            En este tiempo, no solo te has convertido en mi novia, sino en mi mejor amiga, en mi refugio y en la razón por la que siempre tengo una sonrisa al despertar. <br><br>
+            A tu lado, he aprendido que el amor no es perfecto, pero que contigo se siente real, puro y lleno de luz. 
+            Gracias por cada risa, por cada palabra de apoyo cuando las cosas se ponen difíciles y por enseñarme a ser una mejor versión de mí mismo. 
+            Eres la persona más especial que conozco y cada día que pasa me convenzo más de la suerte que tengo de tenerte.<br><br>
+            Se acerca <b>San Valentín</b>, un día que celebra lo que nosotros vivimos a diario. Por eso, no quería que fuera una fecha cualquiera. 
+            Quiero que sea un momento para recordarte cuánto te amo y lo mucho que deseo seguir caminando de tu mano.
         </p>
         <p style="text-align: center; font-weight: bold; font-size: 26px; color: #ff4b6b; margin-top: 30px; font-family: 'serif';">
-            ¿Aceptarías ser mi San Valentín hoy, mañana y siempre? 🌹
+            ¿Me harías el honor de ser mi San Valentín? 🌹
         </p>
         <p class="firma">Con todo mi amor, Justin</p>
     </div>
     """, unsafe_allow_html=True)
 
-# CARGA DE LA FOTO (Asegúrate de que se llame foto.jpg en tu GitHub)
+# CARGA DE LA FOTO (Recuerda que debe llamarse foto.jpg en GitHub)
 try:
     st.image("foto.jpg", use_container_width=True)
 except:
@@ -110,22 +106,22 @@ st.markdown("<br>", unsafe_allow_html=True)
 col1, col2 = st.columns(2)
 
 with col1:
-    if st.button("¡SÍ, MIL VECES SÍ! 😍"):
+    if st.button("¡SÍ, ACEPTO! 😍"):
         st.balloons()
-        st.snow() # Un efecto extra de magia
-        st.success("¡Gracias por hacerme el hombre más afortunado! Prometo cuidarte y amarte cada segundo. ¡Te amo! ❤️")
+        st.snow()
+        st.success("¡Me haces el hombre más feliz del mundo! Prometo que será un San Valentín inolvidable. ¡Te amo demasiado! ❤️")
 
 with col2:
     if st.button("No... 😢"):
         frases = [
-            "¿Estás segura? Creo que el botón rosa tiene mejores premios... ✨",
-            "¡Ups! Este botón parece estar bloqueado por el destino. 😊",
-            "Piénsalo bien, pequeña Lubaloo... ¡tengo muchas sorpresas para ti! 🍫",
-            "Mi corazón me dice que tu dedo buscaba el otro botón. 🌹",
+            "¿Estás segura? Ese botón rosa de al lado se ve mucho mejor... ✨",
+            "¡Error! Este botón ha sido desactivado por exceso de amor. 😊",
+            "Piénsalo bien, Lubaloo... ¡habrá muchas sorpresas! 🍫",
+            "Mi corazón dice que querías presionar el botón de la izquierda. 🌹",
             "¡Inténtalo de nuevo! El amor siempre da segundas oportunidades. ❤️"
         ]
         st.warning(random.choice(frases))
 
-# Pie de página elegante
+# Pie de página
 st.markdown("---")
 st.markdown("<p style='text-align: center; color: white; font-size: 16px; font-weight: bold;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
