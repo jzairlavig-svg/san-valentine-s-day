@@ -43,32 +43,28 @@ st.markdown("""
         z-index: 1;
     }
 
-    /* --- ESTILO DE LAS CAJAS (EXPANDERS) - VERSIÓN FUERTE --- */
-    /* Apuntamos a todos los expanders por su ID de test para asegurar que cambien */
+    /* --- ESTILO DE LAS CAJAS (EXPANDERS) --- */
     [data-testid="stExpander"] {
         background-color: white;
-        border: 2px solid #ff4b6b; /* Borde rojo fuerte */
+        border: 2px solid #ff4b6b;
         border-radius: 15px;
         margin-bottom: 10px;
-        overflow: hidden; /* Para que el color no se salga de las esquinas */
+        overflow: hidden;
         box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
     }
     
-    /* El Encabezado (Donde dice "Tu Sonrisa", etc.) */
     [data-testid="stExpander"] summary {
-        background-color: #ffe5ec !important; /* FONDO ROSA CLARO OBLIGATORIO */
-        color: #d61c4e !important; /* LETRA ROJA OSCURA */
+        background-color: #ffe5ec !important;
+        color: #d61c4e !important;
         font-weight: bold !important;
         font-size: 16px !important;
     }
     
-    /* El Contenido (Lo que sale al abrir) */
     [data-testid="stExpander"] details > div {
-        background-color: #fff0f3 !important; /* FONDO MUY CLARITO */
+        background-color: #fff0f3 !important;
         color: #880d1e !important;
     }
     
-    /* SVG Icons dentro del expander (la flechita) */
     [data-testid="stExpander"] svg {
         color: #ff4b6b !important;
     }
@@ -123,7 +119,7 @@ def lluvia_corazones():
 
 lluvia_corazones()
 
-# --- 4. BARRA LATERAL (Imagen de Corazón Segura) ---
+# --- 4. BARRA LATERAL (¡AHORA CON SNOOPY!) ---
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: #d61c4e;'>Nuestra Historia ❤️</h2>", unsafe_allow_html=True)
     st.markdown("---")
@@ -132,9 +128,9 @@ with st.sidebar:
     st.write("**🎶 Nuestra Canción:** Winter Bear")
     st.write("**📍 Próxima parada:** San Valentín")
     st.markdown("---")
-    # Usamos una imagen directa de Wikimedia que carga rápido y no falla
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/240px-Heart_coraz%C3%B3n.svg.png", width=150)
-    st.markdown("<p style='text-align: center; font-size: 14px; font-weight: bold; color: #d61c4e;'>Juntos x Siempre</p>", unsafe_allow_html=True)
+    # Imagen de Snoopy con corazón
+    st.image("https://cdn.pixabay.com/photo/2017/01/31/16/59/snoopy-2025946_1280.png", width=200)
+    st.markdown("<p style='text-align: center; font-size: 14px; font-weight: bold; color: #d61c4e; margin-top: 10px;'>Juntos x Siempre</p>", unsafe_allow_html=True)
 
 # --- 5. ENCABEZADO Y TIMER ---
 st.markdown("<h1>🌹 Para mi pequeña Lubaloo 🌹</h1>", unsafe_allow_html=True)
@@ -151,7 +147,7 @@ def get_time_left():
 
 dias, horas, minutos, segundos, es_hoy = get_time_left()
 
-st.markdown("<h3 style='margin-bottom: 10px;'>⏳ Cuenta regresiva oficial</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='margin-bottom: 10px;'>⏳ Countdown to Valentine's</h3>", unsafe_allow_html=True)
 
 if es_hoy:
     st.balloons()
@@ -178,7 +174,7 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# --- 7. RAZONES (¡AHORA SÍ CON FONDO DE COLOR!) ---
+# --- 7. RAZONES ---
 st.markdown("<h3>💖 3 Razones por las que te elijo</h3>", unsafe_allow_html=True)
 col_a, col_b, col_c = st.columns(3)
 with col_a:
@@ -193,7 +189,7 @@ with col_c:
 
 st.write("") 
 
-# --- 8. MÚSICA ESCONDIDA (Con fondo de color también) ---
+# --- 8. MÚSICA ESCONDIDA ---
 with st.expander("🎵 Música de fondo: Winter Bear (Clic aquí)"):
     st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
 
@@ -219,7 +215,7 @@ with col1:
     if st.button("¡SÍ, ACEPTO! 😍"):
         st.balloons()
         st.snow()
-        # MENSAJE DE ÉXITO (ROJO/ROSADO)
+        # MENSAJE DE ÉXITO
         st.markdown("""
             <div style="background-color: #ffe5ec; color: #d61c4e; padding: 20px; border-radius: 15px; border: 2px solid #ff4b6b; text-align: center; margin-top: 15px;">
                 <h3 style="color: #ff2e63; margin:0;">¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h3>
