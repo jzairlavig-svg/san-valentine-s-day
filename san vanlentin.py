@@ -4,32 +4,44 @@ import random
 # Configuración de la página
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹")
 
-# Estilos personalizados
+# Estilos personalizados: Fondo de imagen y diseño de cristal
 st.markdown("""
     <style>
+    /* Imagen de fondo (Cielo rosado) */
     .stApp {
-        background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+        background-image: url("https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=2000&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
+    
+    /* Contenedor de la carta con efecto cristal (Glassmorphism) */
     .carta-contenedor {
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: rgba(255, 255, 255, 0.85); /* Blanco semi-transparente */
         padding: 40px;
         border-radius: 30px;
-        border-left: 10px solid #ff4b6b;
-        box-shadow: 0px 15px 35px rgba(0,0,0,0.1);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
         color: #5d0e24;
         margin-bottom: 25px;
         text-align: justify;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(5px); /* Efecto borroso detrás de la carta */
     }
+    
     .titulo-nuevo {
-        color: #ffffff !important;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        color: #5d0e24 !important; /* Color oscuro para que resalte sobre el cielo */
+        text-shadow: 2px 2px 4px rgba(255,255,255,0.6);
         text-align: center;
         font-family: 'serif';
-        font-size: 35px;
+        font-size: 40px;
         font-weight: bold;
         margin-bottom: 25px;
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 10px;
+        border-radius: 20px;
     }
+
     .stButton>button {
         width: 100%;
         border-radius: 50px;
@@ -39,7 +51,15 @@ st.markdown("""
         font-weight: bold;
         font-size: 18px;
         border: none;
+        box-shadow: 0px 5px 15px rgba(255, 75, 107, 0.4);
+        transition: transform 0.2s;
     }
+    
+    .stButton>button:hover {
+        transform: scale(1.05);
+        background-color: #ff758f;
+    }
+
     .firma {
         text-align: right;
         font-style: italic;
@@ -48,24 +68,27 @@ st.markdown("""
         margin-top: 25px;
         font-size: 20px;
     }
+    
     .musica-texto {
         text-align: center;
-        color: #5d0e24;
+        color: #ffffff;
         font-weight: bold;
         margin-bottom: 10px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
-    /* Hacemos el reproductor un poco más compacto y estético */
+
+    /* Reproductor compacto */
     iframe {
         border-radius: 20px;
-        box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
-        height: 200px !important; /* Altura ajustada para el cover art */
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+        height: 200px !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
 st.markdown("<h1 class='titulo-nuevo'>🌹 Una pregunta desde mi corazón 🌹</h1>", unsafe_allow_html=True)
 
-# Carta con tu mensaje para los 10 meses
+# Carta con tu mensaje
 st.markdown(f"""
     <div class="carta-contenedor">
         <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
@@ -85,7 +108,7 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# SECCIÓN DE MÚSICA (Versión Audio Oficial - Cover Art Estático)
+# SECCIÓN DE MÚSICA
 st.markdown("<p class='musica-texto'>🎵 Dale play a nuestra canción...</p>", unsafe_allow_html=True)
 st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
 
@@ -109,4 +132,4 @@ with col2:
         st.warning("Esa opción no existe hoy, intenta el botón de al lado. 😊")
 
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: white; font-weight: bold;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: white; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
