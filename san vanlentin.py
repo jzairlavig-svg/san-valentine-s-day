@@ -5,7 +5,7 @@ import random
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹", layout="centered")
 
-# --- 2. ESTILOS CSS (Diseño Completo y Colorido) ---
+# --- 2. ESTILOS CSS (FUERZA BRUTA PARA COLORES) ---
 st.markdown("""
     <style>
     /* FONDO DE CORAZONES */
@@ -43,29 +43,40 @@ st.markdown("""
         z-index: 1;
     }
 
-    /* ESTILO PARA LAS CAJAS DESPLEGABLES (EXPANDERS) - ¡NUEVO! */
-    /* Estilo del encabezado (la parte que se ve siempre) */
-    .streamlit-expanderHeader {
-        background-color: rgba(255, 255, 255, 0.9) !important; /* Fondo blanco semi-transparente */
-        border: 2px solid #ffcad4 !important; /* Borde rosado */
-        border-radius: 10px !important;
-        color: #d61c4e !important; /* Texto rojo oscuro */
-        font-weight: bold !important;
+    /* --- ESTILO DE LAS CAJAS (EXPANDERS) - VERSIÓN FUERTE --- */
+    /* Apuntamos a todos los expanders por su ID de test para asegurar que cambien */
+    [data-testid="stExpander"] {
+        background-color: white;
+        border: 2px solid #ff4b6b; /* Borde rojo fuerte */
+        border-radius: 15px;
+        margin-bottom: 10px;
+        overflow: hidden; /* Para que el color no se salga de las esquinas */
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
     }
-    /* Estilo del contenido (la parte que se abre) */
-    .streamlit-expanderContent {
-        background-color: rgba(255, 255, 255, 0.9) !important;
-        border: 2px solid #ffcad4 !important;
-        border-top: none !important; /* Sin borde arriba para unirlo al encabezado */
-        border-bottom-left-radius: 10px !important;
-        border-bottom-right-radius: 10px !important;
+    
+    /* El Encabezado (Donde dice "Tu Sonrisa", etc.) */
+    [data-testid="stExpander"] summary {
+        background-color: #ffe5ec !important; /* FONDO ROSA CLARO OBLIGATORIO */
+        color: #d61c4e !important; /* LETRA ROJA OSCURA */
+        font-weight: bold !important;
+        font-size: 16px !important;
+    }
+    
+    /* El Contenido (Lo que sale al abrir) */
+    [data-testid="stExpander"] details > div {
+        background-color: #fff0f3 !important; /* FONDO MUY CLARITO */
         color: #880d1e !important;
+    }
+    
+    /* SVG Icons dentro del expander (la flechita) */
+    [data-testid="stExpander"] svg {
+        color: #ff4b6b !important;
     }
     
     /* SIDEBAR */
     section[data-testid="stSidebar"] {
-        background-color: rgba(255, 255, 255, 0.8);
-        border-right: 2px solid #ffcad4;
+        background-color: rgba(255, 255, 255, 0.85);
+        border-right: 3px solid #ffcad4;
     }
 
     /* TIMER */
@@ -73,7 +84,7 @@ st.markdown("""
         background-color: rgba(255, 255, 255, 0.9);
         border-radius: 15px;
         padding: 5px;
-        border: 1px solid #ff2e63;
+        border: 2px solid #ff2e63;
         text-align: center;
     }
     div[data-testid="stMetricLabel"] { font-size: 14px !important; color: #d61c4e !important; font-weight: bold; }
@@ -112,7 +123,7 @@ def lluvia_corazones():
 
 lluvia_corazones()
 
-# --- 4. BARRA LATERAL (Arreglada con imagen estable) ---
+# --- 4. BARRA LATERAL (Imagen de Corazón Segura) ---
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: #d61c4e;'>Nuestra Historia ❤️</h2>", unsafe_allow_html=True)
     st.markdown("---")
@@ -121,8 +132,9 @@ with st.sidebar:
     st.write("**🎶 Nuestra Canción:** Winter Bear")
     st.write("**📍 Próxima parada:** San Valentín")
     st.markdown("---")
-    # Imagen de corazón estable (Wikimedia Commons)
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/240px-Heart_coraz%C3%B3n.svg.png", caption="Love You", use_container_width=True)
+    # Usamos una imagen directa de Wikimedia que carga rápido y no falla
+    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/240px-Heart_coraz%C3%B3n.svg.png", width=150)
+    st.markdown("<p style='text-align: center; font-size: 14px; font-weight: bold; color: #d61c4e;'>Juntos x Siempre</p>", unsafe_allow_html=True)
 
 # --- 5. ENCABEZADO Y TIMER ---
 st.markdown("<h1>🌹 Para mi pequeña Lubaloo 🌹</h1>", unsafe_allow_html=True)
@@ -139,7 +151,7 @@ def get_time_left():
 
 dias, horas, minutos, segundos, es_hoy = get_time_left()
 
-st.markdown("<h3 style='margin-bottom: 10px;'>⏳ Countdown to Valentine's</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='margin-bottom: 10px;'>⏳ Cuenta regresiva oficial</h3>", unsafe_allow_html=True)
 
 if es_hoy:
     st.balloons()
@@ -166,7 +178,7 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# --- 7. RAZONES (Ahora con fondo y color) ---
+# --- 7. RAZONES (¡AHORA SÍ CON FONDO DE COLOR!) ---
 st.markdown("<h3>💖 3 Razones por las que te elijo</h3>", unsafe_allow_html=True)
 col_a, col_b, col_c = st.columns(3)
 with col_a:
@@ -181,7 +193,7 @@ with col_c:
 
 st.write("") 
 
-# --- 8. MÚSICA ESCONDIDA (Ahora con fondo y color) ---
+# --- 8. MÚSICA ESCONDIDA (Con fondo de color también) ---
 with st.expander("🎵 Música de fondo: Winter Bear (Clic aquí)"):
     st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
 
@@ -207,7 +219,7 @@ with col1:
     if st.button("¡SÍ, ACEPTO! 😍"):
         st.balloons()
         st.snow()
-        # MENSAJE DE ÉXITO PERSONALIZADO (ROJO/ROSADO)
+        # MENSAJE DE ÉXITO (ROJO/ROSADO)
         st.markdown("""
             <div style="background-color: #ffe5ec; color: #d61c4e; padding: 20px; border-radius: 15px; border: 2px solid #ff4b6b; text-align: center; margin-top: 15px;">
                 <h3 style="color: #ff2e63; margin:0;">¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h3>
@@ -220,7 +232,7 @@ with col1:
 
 with col2:
     if st.button("No... 😢"):
-        # MENSAJE DE ERROR PERSONALIZADO
+        # MENSAJE DE ERROR
         st.markdown("""
             <div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 15px; border: 2px solid #f5c6cb; text-align: center; margin-top: 15px;">
                 <p style="font-size: 18px; font-weight: bold;">
