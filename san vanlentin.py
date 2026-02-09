@@ -4,7 +4,7 @@ import random
 # Configuración de la página
 st.set_page_config(page_title="Para mi niña linda", page_icon="❤️")
 
-# Estilos personalizados con CSS
+# Estilos personalizados con CSS para mejorar la apariencia
 st.markdown("""
     <style>
     .stApp {
@@ -44,9 +44,10 @@ st.markdown("""
 
 st.title("❤️ Una pregunta muy importante...")
 
+# Mensaje personalizado para Lubaloo
 st.write("Hola Lubaloo, he estado pensando mucho en esto y quería decírtelo de una forma especial...")
 
-# He cambiado el enlace por uno más estable de GIPHY
+# URL de imagen de respaldo (Gato con flores) que es más estable
 st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bmZqZzR4eXh4eXh4eXh4eXh4eXh4eXh4eXh4eXh4JnB0PWEmZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/K67869X0z7SOf2R809/giphy.gif")
 
 st.markdown("<h3 style='text-align: center; color: #c9184a;'>¿Quieres ser mi San Valentín?</h3>", unsafe_allow_html=True)
@@ -57,7 +58,6 @@ with col1:
     if st.button("¡SÍ! 😍"):
         st.balloons()
         st.success("¡Sabía que dirías que sí! Te quiero muchísimo. ❤️")
-        # Se eliminó st.confetti() para evitar el AttributeError
 
 with col2:
     if st.button("No... 😢"):
@@ -70,6 +70,6 @@ with col2:
         ]
         st.warning(random.choice(respuestas_no))
 
-# Pie de página
+# Pie de página con tu nombre
 st.markdown("---")
 st.markdown("<p style='font-size: 14px; color: #800f2f;'>Hecho con ❤️ por Justin</p>", unsafe_allow_html=True)
