@@ -1,6 +1,5 @@
 import streamlit as st
 import random
-import os
 
 # Configuración de la página
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹")
@@ -80,14 +79,12 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# SECCIÓN DE AUDIO OPTIMIZADA
+# SECCIÓN DE AUDIO CON ENLACE DIRECTO EXTERNO (Más confiable)
 st.markdown("<p class='musica-texto'>🎵 Dale play para escuchar Winter Bear mientras lees...</p>", unsafe_allow_html=True)
-if os.path.exists('musica.mp3'):
-    with open('musica.mp3', 'rb') as f:
-        audio_data = f.read()
-    st.audio(audio_data, format='audio/mp3', start_time=0)
-else:
-    st.warning("No se encontró el archivo musica.mp3. Asegúrate de que esté en tu GitHub.")
+# Usamos un enlace de un servidor de hosting de audio para asegurar compatibilidad
+st.audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3") 
+# NOTA: He puesto un audio de prueba para confirmar si el reproductor suena. 
+# Si este suena, solo debemos buscar un link directo de Winter Bear.
 
 # Imagen
 try:
@@ -106,7 +103,4 @@ with col1:
 
 with col2:
     if st.button("No... 😢"):
-        st.warning("Esa opción no existe hoy, intenta el botón de al lado. 😊")
-
-st.markdown("---")
-st.markdown("<p style='text-align: center; color: white; font-weight: bold;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
+        st.warning("Esa opción no existe hoy, intenta el botón
