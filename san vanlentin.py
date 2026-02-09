@@ -1,11 +1,12 @@
 import streamlit as st
 from datetime import datetime, timedelta
 import random
+import os
 
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹", layout="centered")
 
-# --- 2. ESTILOS CSS (SNOOPY + COLORES FUERTES) ---
+# --- 2. ESTILOS CSS (FUERZA BRUTA PARA COLORES) ---
 st.markdown("""
     <style>
     /* FONDO DE CORAZONES */
@@ -27,32 +28,36 @@ st.markdown("""
         text-align: justify;
     }
 
-    /* --- FUERZA BRUTA PARA LAS CAJAS DE COLORES --- */
-    /* Caja cerrada y borde general */
-    details {
-        background-color: #ffffff;
-        border: 2px solid #ff4b6b; /* Borde rojo */
-        border-radius: 10px;
-        margin-bottom: 15px;
-        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-    }
-    
-    /* El Título (Tu Sonrisa, etc.) - FONDO ROSA */
-    summary {
+    /* --- ESTILOS DE CAJAS (EXPANDERS) --- */
+    /* Forzamos el color en el contenedor del expander */
+    .streamlit-expanderHeader {
         background-color: #ffe5ec !important; /* Rosa claro */
-        color: #d61c4e !important; /* Rojo oscuro */
-        font-weight: bold;
-        padding: 15px;
-        border-radius: 10px; /* Bordes redondos */
-        list-style: none; /* Quita el triángulo feo por defecto */
-        cursor: pointer;
+        color: #d61c4e !important; /* Rojo fuerte */
+        border: 2px solid #ffcad4 !important;
+        border-radius: 10px !important;
     }
     
-    /* El contenido al abrir */
-    details[open] summary {
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border-bottom: 1px solid #ff4b6b;
+    /* Para navegadores que usan 'details' directamente */
+    details {
+        background-color: #ffe5ec !important;
+        border-radius: 10px;
+        border: 2px solid #ffcad4;
+        margin-bottom: 10px;
+    }
+    
+    summary {
+        background-color: #ffe5ec !important;
+        color: #d61c4e !important;
+        font-weight: bold;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    /* Contenido interno blanco */
+    details > div {
+        background-color: #fff !important;
+        padding: 10px;
+        border-radius: 0 0 10px 10px;
     }
     
     /* SIDEBAR */
@@ -92,7 +97,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# --- 3. BARRA LATERAL (SNOOPY REAL) ---
+# --- 3. BARRA LATERAL (Con lógica para Snoopy Local) ---
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: #d61c4e;'>Nuestra Historia ❤️</h2>", unsafe_allow_html=True)
     st.markdown("---")
@@ -101,8 +106,20 @@ with st.sidebar:
     st.write("**🎶 Nuestra Canción:** Winter Bear")
     st.write("**📍 Próxima parada:** San Valentín")
     st.markdown("---")
-    # GIF de Snoopy lanzando besos (GIPHY link estable)
-    st.image("https://media.giphy.com/media/l4pTfx2qLszoacZRS/giphy.gif", width=250)
+    
+    # INTENTO DE CARGAR SNOOPY
+    # 1. Intenta cargar snoopy.jpg (si la subiste)
+    # 2. Si no, intenta snoopy.png
+    # 3. Si no, usa un link de internet (que puede fallar, pero es el plan C)
+    if os.path.exists("snoopy.jpg"):
+        st.image("snoopy.jpg", width=200)
+    elif os.path.exists("snoopy.png"):
+        st.image("snoopy.png", width=200)
+    else:
+        # Enlace de respaldo (Wikimedia Commons - Corazón de amor, muy estable)
+        # Si quieres a Snoopy sí o sí, ¡SUBE LA FOTO A GITHUB!
+        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/240px-Heart_coraz%C3%B3n.svg.png", width=150, caption="¡Sube a Snoopy a GitHub!")
+
     st.markdown("<p style='text-align: center; font-size: 14px; font-weight: bold; color: #d61c4e; margin-top: 10px;'>Juntos x Siempre</p>", unsafe_allow_html=True)
 
 # --- 4. ENCABEZADO Y TIMER ---
@@ -147,7 +164,7 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# --- 6. RAZONES (Ahora con CSS forzado) ---
+# --- 6. RAZONES (COLORES ROSADOS) ---
 st.markdown("<h3>💖 3 Razones por las que te elijo</h3>", unsafe_allow_html=True)
 col_a, col_b, col_c = st.columns(3)
 with col_a:
@@ -170,7 +187,10 @@ st.write("")
 
 # --- 8. FOTO ---
 try:
-    st.image("foto.jpg", caption="Tú y Yo ❤️", use_container_width=True)
+    if os.path.exists("foto.jpg"):
+        st.image("foto.jpg", caption="Tú y Yo ❤️", use_container_width=True)
+    else:
+        st.image("https://via.placeholder.com/600x400?text=Sube+tu+foto.jpg", use_container_width=True)
 except:
     st.info("⚠️ Sube tu foto 'foto.jpg' para verla aquí.")
 
