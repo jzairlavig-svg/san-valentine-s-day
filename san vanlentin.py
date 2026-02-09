@@ -1,6 +1,5 @@
 import streamlit as st
 import random
-import os
 
 # Configuración de la página
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹")
@@ -55,12 +54,17 @@ st.markdown("""
         font-weight: bold;
         margin-bottom: 10px;
     }
+    /* Estilo para que el reproductor de video sea pequeño y parezca solo audio */
+    iframe {
+        border-radius: 15px;
+        height: 80px !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
 st.markdown("<h1 class='titulo-nuevo'>🌹 Una pregunta desde mi corazón 🌹</h1>", unsafe_allow_html=True)
 
-# Carta con tu mensaje personalizado
+# Carta con tu mensaje para los 10 meses
 st.markdown(f"""
     <div class="carta-contenedor">
         <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
@@ -80,17 +84,11 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# SECCIÓN DE AUDIO (Usando el archivo local musica.mp3)
-st.markdown("<p class='musica-texto'>🎵 Dale play para escuchar Winter Bear mientras lees...</p>", unsafe_allow_html=True)
+# SECCIÓN DE MÚSICA (Vía YouTube optimizado para que parezca audio)
+st.markdown("<p class='musica-texto'>🎵 Dale play para escuchar Winter Bear...</p>", unsafe_allow_html=True)
+st.video("https://www.youtube.com/watch?v=pk7ESz6vtyA")
 
-if os.path.exists("musica.mp3"):
-    with open("musica.mp3", "rb") as f:
-        audio_bytes = f.read()
-    st.audio(audio_bytes, format="audio/mp3")
-else:
-    st.write("Subiendo la música... ❤️")
-
-# Imagen
+# Foto
 try:
     st.image("foto.jpg", use_container_width=True)
 except:
