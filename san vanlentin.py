@@ -1,20 +1,20 @@
 import streamlit as st
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹", layout="centered")
 
-# --- 2. ESTILOS CSS (Fondo de Corazones + Diseño Limpio) ---
+# --- 2. ESTILOS CSS (Fondo de Corazones + Timer Bonito) ---
 st.markdown("""
     <style>
-    /* FONDO DE CORAZONES (SVG Incrustado para carga rápida) */
+    /* FONDO DE CORAZONES */
     .stApp {
         background-color: #ffdde1;
         background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 56C14.327 40 4 28 4 16 4 9.373 9.373 4 16 4c4.18 0 7.843 2.14 10 5.36C28.157 6.14 31.82 4 36 4c6.627 0 12 5.373 12 12 0 12-10.327 24-28 40z' fill='%23eebbc3' fill-opacity='0.6' fill-rule='evenodd'/%3E%3C/svg%3E");
         background-attachment: fixed;
     }
     
-    /* CONTENEDOR DE LA CARTA */
+    /* CAJA DE LA CARTA */
     .carta-contenedor {
         background-color: rgba(255, 255, 255, 0.95);
         padding: 30px;
@@ -26,19 +26,24 @@ st.markdown("""
         text-align: justify;
     }
     
-    /* CAJA DEL CONTADOR */
-    .contador-box {
-        background: linear-gradient(135deg, #ff2e63 0%, #ff4b6b 100%);
-        color: white;
-        padding: 15px;
+    /* ESTILO DEL TIMER (Métricas) */
+    div[data-testid="stMetric"] {
+        background-color: rgba(255, 255, 255, 0.8);
         border-radius: 15px;
+        padding: 10px;
+        border: 2px solid #ff2e63;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
         text-align: center;
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 25px;
-        box-shadow: 0px 5px 15px rgba(255, 46, 99, 0.3);
     }
-    
+    div[data-testid="stMetricLabel"] {
+        color: #d61c4e !important;
+        font-weight: bold;
+    }
+    div[data-testid="stMetricValue"] {
+        color: #ff2e63 !important;
+        font-size: 28px !important;
+    }
+
     /* BOTONES */
     .stButton>button {
         width: 100%;
@@ -60,31 +65,49 @@ st.markdown("""
     /* TÍTULOS */
     h1 { color: #d61c4e !important; text-shadow: 2px 2px 0px white; font-family: serif; text-align: center; margin-bottom: 10px; }
     h3 { color: #ff2e63 !important; text-align: center; font-family: sans-serif; font-size: 20px; margin-top: 20px;}
-    
-    /* IMAGEN */
-    img { border-radius: 20px; border: 4px solid white; box-shadow: 0px 5px 15px rgba(0,0,0,0.1); }
     </style>
     """, unsafe_allow_html=True)
 
-# --- 3. ENCABEZADO Y CONTADOR ---
+# --- 3. ENCABEZADO ---
 st.markdown("<h1>🌹 Para mi pequeña Lubaloo 🌹</h1>", unsafe_allow_html=True)
 
-# Lógica del contador
-hoy = datetime.now()
-san_valentin = datetime(hoy.year, 2, 14)
-if hoy > san_valentin:
-    san_valentin = datetime(hoy.year + 1, 2, 14)
-falta = san_valentin - hoy
-dias = falta.days
-horas = falta.seconds // 3600
+# --- 4. TIMER CORRECTO (Ajustado a hora Perú/Colombia) ---
+def get_time_left():
+    # Ajustamos a UTC-5 (Hora Perú/Colombia) manualmente para no depender de librerías externas complejas
+    ahora_utc = datetime.utcnow()
+    ahora_peru = ahora_utc - timedelta(hours=5)
+    
+    # Objetivo: 14 de Febrero a las 00:00:00
+    target_year = ahora_peru.year
+    target = datetime(target_year, 2, 14)
+    
+    # Si ya pasó el 14 de feb de este año, apuntar al siguiente
+    if ahora_peru > target + timedelta(days=1): # Damos 1 día de margen para que se vea "00:00:00" el propio día
+        target = datetime(target_year + 1, 2, 14)
+    
+    restante = target - ahora_peru
+    
+    # Si es el día exacto (menos de 24h pasadas desde el inicio del 14), mostrar mensaje especial
+    if restante.days < 0:
+        return 0, 0, 0, 0, True # Es San Valentín!
+        
+    return restante.days, restante.seconds // 3600, (restante.seconds // 60) % 60, restante.seconds % 60, False
 
-st.markdown(f"""
-    <div class='contador-box'>
-        ⏳ Faltan {dias} días y {horas} horas para San Valentín ✨
-    </div>
-    """, unsafe_allow_html=True)
+dias, horas, minutos, segundos, es_hoy = get_time_left()
 
-# --- 4. LA CARTA ---
+st.markdown("<h3 style='margin-bottom: 10px;'>⏳ Cuenta regresiva para San Valentín</h3>", unsafe_allow_html=True)
+
+if es_hoy:
+    st.success("¡FELIZ SAN VALENTÍN! ❤️🌹✨")
+else:
+    # Mostramos el timer en columnas bonitas
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Días", dias)
+    col2.metric("Horas", horas)
+    col3.metric("Mins", minutos)
+    col4.metric("Segs", segundos)
+
+# --- 5. LA CARTA ---
 st.markdown(f"""
     <div class="carta-contenedor">
         <p style="font-size: 20px; font-weight: bold; color: #d61c4e;">Mi adorada Lubaloo,</p>
@@ -99,9 +122,8 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# --- 5. RAZONES POR LAS QUE TE AMO ---
+# --- 6. RAZONES ---
 st.markdown("<h3>💖 3 Razones por las que te elijo (Clic para ver)</h3>", unsafe_allow_html=True)
-
 col_a, col_b, col_c = st.columns(3)
 with col_a:
     with st.expander("Tu Sonrisa ✨"):
@@ -115,20 +137,19 @@ with col_c:
 
 st.write("") 
 
-# --- 6. MÚSICA ESCONDIDA (Menú Desplegable) ---
-# Aquí es donde escondemos el video para que no ocupe espacio
+# --- 7. MÚSICA ESCONDIDA ---
 with st.expander("🎵 Música de fondo: Winter Bear (Clic aquí)"):
     st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
 
 st.write("")
 
-# --- 7. FOTO ---
+# --- 8. FOTO ---
 try:
     st.image("foto.jpg", caption="Tú y Yo ❤️", use_container_width=True)
 except:
     st.info("⚠️ Sube tu foto 'foto.jpg' para verla aquí.")
 
-# --- 8. PREGUNTA FINAL ---
+# --- 9. PREGUNTA FINAL ---
 st.markdown("""
     <div class="carta-contenedor" style="text-align: center; border-color: #ff2e63; margin-top: 20px;">
         <p style="font-size: 22px; font-weight: bold; color: #ff2e63;">
