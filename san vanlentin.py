@@ -43,46 +43,25 @@ st.markdown("""
         z-index: 1;
     }
 
-    /* ESTILO PARA LAS CAJAS DE "3 RAZONES" (EXPANDERS) */
+    /* ESTILO PARA LAS CAJAS DESPLEGABLES (EXPANDERS) - ¡NUEVO! */
+    /* Estilo del encabezado (la parte que se ve siempre) */
     .streamlit-expanderHeader {
-        background-color: #ffe5ec; /* Fondo rosado suave */
-        color: #d61c4e; /* Texto rojo oscuro */
-        font-weight: bold;
-        border-radius: 10px;
-        border: 1px solid #ffcad4;
+        background-color: rgba(255, 255, 255, 0.9) !important; /* Fondo blanco semi-transparente */
+        border: 2px solid #ffcad4 !important; /* Borde rosado */
+        border-radius: 10px !important;
+        color: #d61c4e !important; /* Texto rojo oscuro */
+        font-weight: bold !important;
     }
+    /* Estilo del contenido (la parte que se abre) */
     .streamlit-expanderContent {
-        background-color: white;
-        border-radius: 0 0 10px 10px;
-        border: 1px solid #ffcad4;
-        border-top: none;
-        color: #5d0e24;
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        border: 2px solid #ffcad4 !important;
+        border-top: none !important; /* Sin borde arriba para unirlo al encabezado */
+        border-bottom-left-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+        color: #880d1e !important;
     }
     
-    /* MENSAJES DE RESPUESTA (SÍ/NO) PERSONALIZADOS */
-    .mensaje-exito {
-        background-color: #d4edda;
-        color: #155724;
-        padding: 15px;
-        border-radius: 15px;
-        border: 2px solid #c3e6cb;
-        text-align: center;
-        font-weight: bold;
-        font-size: 18px;
-        margin-top: 20px;
-    }
-    .mensaje-error {
-        background-color: #f8d7da;
-        color: #721c24;
-        padding: 15px;
-        border-radius: 15px;
-        border: 2px solid #f5c6cb;
-        text-align: center;
-        font-weight: bold;
-        font-size: 18px;
-        margin-top: 20px;
-    }
-
     /* SIDEBAR */
     section[data-testid="stSidebar"] {
         background-color: rgba(255, 255, 255, 0.8);
@@ -133,7 +112,7 @@ def lluvia_corazones():
 
 lluvia_corazones()
 
-# --- 4. BARRA LATERAL (Arreglada) ---
+# --- 4. BARRA LATERAL (Arreglada con imagen estable) ---
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: #d61c4e;'>Nuestra Historia ❤️</h2>", unsafe_allow_html=True)
     st.markdown("---")
@@ -142,8 +121,8 @@ with st.sidebar:
     st.write("**🎶 Nuestra Canción:** Winter Bear")
     st.write("**📍 Próxima parada:** San Valentín")
     st.markdown("---")
-    # Imagen de ositos estable (de Unsplash) para que no falle
-    st.image("https://images.unsplash.com/photo-1585155967849-91c73653ace3?q=80&w=600&auto=format&fit=crop", caption="Love You", use_container_width=True)
+    # Imagen de corazón estable (Wikimedia Commons)
+    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/240px-Heart_coraz%C3%B3n.svg.png", caption="Love You", use_container_width=True)
 
 # --- 5. ENCABEZADO Y TIMER ---
 st.markdown("<h1>🌹 Para mi pequeña Lubaloo 🌹</h1>", unsafe_allow_html=True)
@@ -187,7 +166,7 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# --- 7. RAZONES (Con Cajas de Colores) ---
+# --- 7. RAZONES (Ahora con fondo y color) ---
 st.markdown("<h3>💖 3 Razones por las que te elijo</h3>", unsafe_allow_html=True)
 col_a, col_b, col_c = st.columns(3)
 with col_a:
@@ -202,7 +181,7 @@ with col_c:
 
 st.write("") 
 
-# --- 8. MÚSICA ESCONDIDA ---
+# --- 8. MÚSICA ESCONDIDA (Ahora con fondo y color) ---
 with st.expander("🎵 Música de fondo: Winter Bear (Clic aquí)"):
     st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
 
