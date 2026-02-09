@@ -1,103 +1,89 @@
 import streamlit as st
 import random
 
-# --- CONFIGURACIÓN DE PÁGINA (Debe ser lo primero) ---
-st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹")
+# --- 1. CONFIGURACIÓN (OBLIGATORIO PRIMERA LÍNEA) ---
+st.set_page_config(page_title="Para Lubaloo ❤️", page_icon="🌹", layout="centered")
 
-# --- ESTILOS CSS (Fondo de Corazones y Diseño Cristal) ---
+# --- 2. ESTILOS CSS (FONDO SEGURO SIN IMAGEN EXTERNA) ---
 st.markdown("""
     <style>
-    /* Imagen de fondo romántica */
+    /* FONDO DEGRADADO: Carga instantánea y nunca falla */
     .stApp {
-        background-image: url("https://images.unsplash.com/photo-1612452830763-568fb16926bb?q=80&w=2000&auto=format&fit=crop");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
         background-attachment: fixed;
     }
     
-    /* Caja de la carta con efecto vidrio */
+    /* CAJA DE LA CARTA */
     .carta-contenedor {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.85);
         padding: 30px;
         border-radius: 20px;
-        border: 2px solid white;
-        box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
-        color: #5d0e24;
-        margin-bottom: 20px;
+        border: 4px solid white;
+        box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+        color: #880d1e; /* Color de texto oscuro para que se lea bien */
+        margin-bottom: 25px;
         text-align: justify;
     }
     
-    /* Título estilizado */
-    .titulo-nuevo {
-        color: #c9184a !important;
-        text-shadow: 2px 2px 0px #ffffff;
+    /* TÍTULO */
+    h1 {
+        color: #d61c4e !important;
         text-align: center;
-        font-family: serif;
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 20px;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 10px;
-        border-radius: 15px;
+        font-family: 'serif';
+        text-shadow: 2px 2px 0px white;
     }
 
-    /* Botones bonitos */
+    /* BOTONES */
     .stButton>button {
         width: 100%;
         border-radius: 50px;
         height: 50px;
-        background-color: #ff4b6b;
+        background-color: #ff2e63;
         color: white;
         font-weight: bold;
-        border: 2px solid white;
-        box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+        border: none;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
     }
     
     .stButton>button:hover {
+        background-color: #c70d3a;
         transform: scale(1.02);
-        background-color: #d6284a;
     }
 
+    /* FIRMA */
     .firma {
         text-align: right;
         font-style: italic;
         font-weight: bold;
-        color: #c9184a;
+        color: #d61c4e;
         margin-top: 15px;
     }
     
+    /* MENSAJE MÚSICA */
     .musica-texto {
-        text-align: center;
-        color: white;
+        background-color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        color: #ff2e63;
         font-weight: bold;
-        background-color: #ff4b6b;
-        padding: 5px;
-        border-radius: 10px;
         display: inline-block;
-        margin-bottom: 10px;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
     }
-
-    /* Ajuste del video para que parezca audio */
-    div.stVideo {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 400px; /* Limita el ancho del reproductor */
-    }
-    iframe {
-        height: 200px;
-        border-radius: 15px;
-    }
+    
+    /* Ajuste de imagen y video */
+    img { border-radius: 15px; }
+    iframe { border-radius: 15px; box-shadow: 0px 5px 15px rgba(0,0,0,0.2); }
     </style>
     """, unsafe_allow_html=True)
 
-# --- CONTENIDO ---
-st.markdown("<h1 class='titulo-nuevo'>🌹 Una pregunta desde mi corazón 🌹</h1>", unsafe_allow_html=True)
+# --- 3. CONTENIDO VISUAL ---
 
-# Carta
+st.title("🌹 Una pregunta desde mi corazón 🌹")
+
+# CARTA
 st.markdown(f"""
     <div class="carta-contenedor">
-        <p style="font-size: 20px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
+        <p style="font-size: 20px; font-weight: bold; color: #d61c4e;">Mi adorada Lubaloo,</p>
         <p style="font-size: 18px; line-height: 1.6;">
             Parece que fue ayer cuando empezamos este camino, y ya han pasado <b>10 maravillosos meses</b>. 
             En este tiempo, no solo te has convertido en mi novia, sino en mi mejor amiga, en mi refugio y en la razón por la que siempre tengo una sonrisa al despertar. <br><br>
@@ -107,31 +93,33 @@ st.markdown(f"""
             Se acerca <b>San Valentín</b>, un día que celebra lo que nosotros vivimos a diario. Por eso, no quería que fuera una fecha cualquiera. 
             Quiero que sea un momento para recordarte cuánto te amo y lo mucho que deseo seguir caminando de tu mano.
         </p>
-        <p style="text-align: center; font-weight: bold; font-size: 24px; color: #ff4b6b; margin-top: 20px;">
+        <p style="text-align: center; font-weight: bold; font-size: 24px; color: #ff2e63; margin-top: 20px;">
             ¿Me harías el honor de ser mi San Valentín? 🌹
         </p>
         <p class="firma">Con todo mi amor, Justin</p>
     </div>
     """, unsafe_allow_html=True)
 
-# Música
-col_musica1, col_musica2, col_musica3 = st.columns([1, 2, 1])
-with col_musica2:
-    st.markdown("<div style='text-align: center;'><p class='musica-texto'>🎵 Dale play a nuestra canción...</p></div>", unsafe_allow_html=True)
+# MÚSICA
+c1, c2, c3 = st.columns([1, 6, 1])
+with c2:
+    st.markdown("<div style='text-align: center; margin-bottom: 10px;'><span class='musica-texto'>🎵 Dale play a nuestra canción...</span></div>", unsafe_allow_html=True)
     st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.write("") # Espacio vacío
 
-# Foto (Con manejo de errores seguro)
+# FOTO (Manejo de errores para evitar pantalla blanca)
 try:
-    # Usamos use_column_width que es compatible con versiones viejas y nuevas
-    st.image("foto.jpg", use_column_width=True) 
+    st.image("foto.jpg", caption="Nosotros ❤️", use_container_width=True) # Probamos comando nuevo
 except:
-    st.warning("⚠️ No se pudo cargar la foto. Asegúrate de que el archivo en GitHub se llame 'foto.jpg' (minúsculas).")
+    try:
+        st.image("foto.jpg", caption="Nosotros ❤️", use_column_width=True) # Probamos comando viejo si el nuevo falla
+    except:
+        st.error("⚠️ No se pudo cargar la foto 'foto.jpg'. Verifica el nombre en GitHub.")
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.write("") # Espacio vacío
 
-# Botones
+# BOTONES
 col1, col2 = st.columns(2)
 with col1:
     if st.button("¡SÍ, ACEPTO! 😍"):
@@ -141,7 +129,7 @@ with col1:
 
 with col2:
     if st.button("No... 😢"):
-        st.warning("Esa opción no existe hoy, intenta el botón de al lado. 😊")
+        st.warning("Opción no disponible. ¡El destino dice que sí! 😊")
 
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: white; background-color: rgba(0,0,0,0.3); padding: 5px; border-radius: 10px;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
+st.markdown("<div style='text-align: center; color: #880d1e;'>Para: Lubaloo | De: Justin — Febrero 2026</div>", unsafe_allow_html=True)
