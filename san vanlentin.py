@@ -54,10 +54,11 @@ st.markdown("""
         font-weight: bold;
         margin-bottom: 10px;
     }
-    /* Estilo para que el reproductor de video sea pequeño y parezca solo audio */
+    /* Hacemos el reproductor un poco más compacto y estético */
     iframe {
-        border-radius: 15px;
-        height: 80px !important;
+        border-radius: 20px;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+        height: 200px !important; /* Altura ajustada para el cover art */
     }
     </style>
     """, unsafe_allow_html=True)
@@ -84,9 +85,9 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# SECCIÓN DE MÚSICA (Vía YouTube optimizado para que parezca audio)
-st.markdown("<p class='musica-texto'>🎵 Dale play para escuchar Winter Bear...</p>", unsafe_allow_html=True)
-st.video("https://www.youtube.com/watch?v=pk7ESz6vtyA")
+# SECCIÓN DE MÚSICA (Versión Audio Oficial - Cover Art Estático)
+st.markdown("<p class='musica-texto'>🎵 Dale play a nuestra canción...</p>", unsafe_allow_html=True)
+st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
 
 # Foto
 try:
