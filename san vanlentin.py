@@ -2,9 +2,9 @@ import streamlit as st
 import random
 
 # Configuración de la página
-st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹")
+st.set_page_config(page_title="San Valentín para Lubaloo ❤️", page_icon="🌹")
 
-# Estilos personalizados: Fondo degradado y diseño de carta
+# Estilos personalizados
 st.markdown("""
     <style>
     .stApp {
@@ -21,14 +21,14 @@ st.markdown("""
         text-align: justify;
         backdrop-filter: blur(10px);
     }
-    .titulo-principal {
-        color: #ffffff;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    .titulo-nuevo {
+        color: #ffffff !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         text-align: center;
         font-family: 'serif';
-        font-size: 38px;
+        font-size: 35px;
         font-weight: bold;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
     .stButton>button {
         width: 100%;
@@ -37,13 +37,8 @@ st.markdown("""
         background-color: #ff4b6b;
         color: white;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 18px;
         border: none;
-        box-shadow: 0px 4px 15px rgba(255, 75, 107, 0.3);
-    }
-    .stButton>button:hover {
-        background-color: #ff758f;
-        transform: scale(1.02);
     }
     .firma {
         text-align: right;
@@ -53,18 +48,13 @@ st.markdown("""
         margin-top: 25px;
         font-size: 20px;
     }
-    div[data-testid="stImage"] > img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 20px;
-        border: 4px solid white;
-    }
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown("<h1 class='titulo-principal'>✨ Una propuesta especial ✨</h1>", unsafe_allow_html=True)
+# Título modificado para forzar la actualización
+st.markdown("<h1 class='titulo-nuevo'>🌹 Una pregunta desde mi corazón 🌹</h1>", unsafe_allow_html=True)
 
-# EL TEXTO QUE ME PEDISTE
+# TEXTO ACTUALIZADO (El que tú escribiste)
 st.markdown(f"""
     <div class="carta-contenedor">
         <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
@@ -84,7 +74,7 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# Intento de cargar la foto.jpg que tienes en tu GitHub
+# Imagen foto.jpg
 try:
     st.image("foto.jpg", use_container_width=True)
 except:
@@ -98,18 +88,14 @@ with col1:
     if st.button("¡SÍ, ACEPTO! 😍"):
         st.balloons()
         st.snow()
-        st.success("¡Me haces el hombre más feliz del mundo! ¡Te amo demasiado, mi niña! ❤️")
+        st.success("¡Me haces el hombre más feliz del mundo! ¡Te amo demasiado! ❤️")
 
 with col2:
     if st.button("No... 😢"):
-        frases_no = [
-            "¿Estás segura? El botón rosa tiene mejores premios... ✨",
-            "¡Error! Este botón está bloqueado por el destino. 😊",
-            "Piénsalo bien, Lubaloo... ¡habrá muchas sorpresas! 🍫",
-            "Mi corazón dice que querías presionar el botón de la izquierda. 🌹"
-        ]
-        st.warning(random.choice(frases_no))
+        st.warning("Esa opción no existe hoy, intenta el botón de al lado. 😊")
 
+st.markdown("---")
+st.markdown("<p style='text-align: center; color: white; font-weight: bold;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
 # Pie de página
 st.markdown("---")
 st.markdown("<p style='text-align: center; color: white; font-weight: bold; font-size: 16px;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
