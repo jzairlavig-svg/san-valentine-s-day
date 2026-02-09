@@ -48,12 +48,11 @@ st.markdown("""
         margin-top: 25px;
         font-size: 20px;
     }
-    .musica-seccion {
+    .musica-texto {
         text-align: center;
-        background: rgba(255, 255, 255, 0.5);
-        padding: 15px;
-        border-radius: 20px;
-        margin-top: 20px;
+        color: #5d0e24;
+        font-weight: bold;
+        margin-bottom: 10px;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -80,9 +79,14 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# Sección de Música: Winter Bear
-st.markdown("<div class='musica-seccion'>🎵 Dale play a nuestra canción: <b>Winter Bear</b></div>", unsafe_allow_html=True)
-st.video("https://www.youtube.com/watch?v=pk7ESz6vtyA")
+# SECCIÓN DE AUDIO (Solo canción, sin video)
+try:
+    audio_file = open('musica.mp3', 'rb')
+    audio_bytes = audio_file.read()
+    st.markdown("<p class='musica-texto'>🎵 Dale play para acompañar este momento...</p>", unsafe_allow_html=True)
+    st.audio(audio_bytes, format='audio/mp3')
+except:
+    st.info("Sube el archivo 'musica.mp3' a tu GitHub para escuchar Winter Bear ❤️")
 
 # Foto
 try:
