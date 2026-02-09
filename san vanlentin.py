@@ -2,68 +2,63 @@ import streamlit as st
 import random
 
 # Configuración de la página
-st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹")
+st.set_page_config(page_title="San Valentín para Lubaloo ❤️", page_icon="🌹")
 
-# Estilos personalizados para una atmósfera romántica
+# Estilos personalizados
 st.markdown("""
     <style>
     .stApp {
-        background-color: #fff0f3;
+        background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+    }
+    .carta-contenedor {
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 30px;
+        border-left: 10px solid #ff4b6b;
+        box-shadow: 0px 15px 35px rgba(0,0,0,0.1);
+        color: #5d0e24;
+        margin-bottom: 25px;
+        text-align: justify;
+        backdrop-filter: blur(10px);
+    }
+    .titulo-nuevo {
+        color: #ffffff !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        text-align: center;
+        font-family: 'serif';
+        font-size: 35px;
+        font-weight: bold;
+        margin-bottom: 25px;
     }
     .stButton>button {
         width: 100%;
-        border-radius: 25px;
-        height: 3.5em;
+        border-radius: 50px;
+        height: 4em;
         background-color: #ff4b6b;
         color: white;
-        border: none;
         font-weight: bold;
         font-size: 18px;
-        box-shadow: 0px 4px 10px rgba(255, 75, 107, 0.3);
-    }
-    .stButton>button:hover {
-        background-color: #ff758f;
-        color: white;
-        transform: translateY(-2px);
-    }
-    .carta-contenedor {
-        background-color: white;
-        padding: 40px;
-        border-radius: 20px;
-        border-left: 10px solid #ff4b6b;
-        box-shadow: 0px 10px 25px rgba(0,0,0,0.05);
-        color: #590d22;
-        margin-bottom: 25px;
-        text-align: justify;
-    }
-    .titulo-san-valentin {
-        color: #c9184a;
-        text-align: center;
-        font-family: 'Georgia', serif;
-        font-weight: bold;
+        border: none;
     }
     .firma {
         text-align: right;
         font-style: italic;
         font-weight: bold;
         color: #c9184a;
-        margin-top: 20px;
-    }
-    div[data-testid="stImage"] > img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 20px;
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        margin-top: 25px;
+        font-size: 20px;
     }
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown("<h1 class='titulo-san-valentin'>💖 Una confesión para ti...</h1>", unsafe_allow_html=True)
+# Título modificado para forzar la actualización
+st.markdown("<h1 class='titulo-nuevo'>🌹 Una pregunta desde mi corazón 🌹</h1>", unsafe_allow_html=True)
 
-<div class="carta-contenedor">
+# TEXTO ACTUALIZADO (El que tú escribiste)
+st.markdown(f"""
+    <div class="carta-contenedor">
         <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
-        <p style="font-size: 19px; line-height: 1.9;">
+        <p style="font-size: 19px; line-height: 1.8;">
             Parece que fue ayer cuando empezamos este camino, y ya han pasado <b>10 maravillosos meses</b>. 
             En este tiempo, no solo te has convertido en mi novia, sino en mi mejor amiga, en mi refugio y en la razón por la que siempre tengo una sonrisa al despertar. <br><br>
             A tu lado, he aprendido que el amor no es perfecto, pero que contigo se siente real, puro y lleno de luz. 
@@ -72,18 +67,18 @@ st.markdown("<h1 class='titulo-san-valentin'>💖 Una confesión para ti...</h1>
             Se acerca <b>San Valentín</b>, un día que celebra lo que nosotros vivimos a diario. Por eso, no quería que fuera una fecha cualquiera. 
             Quiero que sea un momento para recordarte cuánto te amo y lo mucho que deseo seguir caminando de tu mano.
         </p>
-        <p style="text-align: center; font-weight: bold; font-size: 26px; color: #ff4b6b; margin-top: 30px; font-family: 'serif';">
+        <p style="text-align: center; font-weight: bold; font-size: 26px; color: #ff4b6b; margin-top: 30px;">
             ¿Me harías el honor de ser mi San Valentín? 🌹
         </p>
         <p class="firma">Con todo mi amor, Justin</p>
     </div>
     """, unsafe_allow_html=True)
 
-# CARGA DE LA FOTO QUE SUBISTE
+# Imagen foto.jpg
 try:
     st.image("foto.jpg", use_container_width=True)
 except:
-    st.write("Cargando nuestra foto especial... ❤️")
+    st.info("Cargando nuestra foto... ❤️")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -92,18 +87,12 @@ col1, col2 = st.columns(2)
 with col1:
     if st.button("¡SÍ, ACEPTO! 😍"):
         st.balloons()
-        st.success("¡Me haces el hombre más feliz del mundo! Prometo que será un día inolvidable. ¡Te amo! ❤️")
+        st.snow()
+        st.success("¡Me haces el hombre más feliz del mundo! ¡Te amo demasiado! ❤️")
 
 with col2:
     if st.button("No... 😢"):
-        frases = [
-            "¿Segura? El botón de al lado tiene más magia... ✨",
-            "¡Error! Este botón está temporalmente fuera de servicio por exceso de ternura. 😊",
-            "Piénsalo bien... ¡tengo muchas sorpresas planeadas! 🍫",
-            "Mi corazón me dice que querías presionar el botón rosa. 🌹"
-        ]
-        st.warning(random.choice(frases))
+        st.warning("Esa opción no existe hoy, intenta el botón de al lado. 😊")
 
-# Pie de página
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #800f2f; font-size: 14px;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: white; font-weight: bold;'>Para: Lubaloo | De: Justin — Febrero 2026</p>", unsafe_allow_html=True)
