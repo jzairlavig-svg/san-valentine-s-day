@@ -48,13 +48,19 @@ st.markdown("""
         margin-top: 25px;
         font-size: 20px;
     }
+    .musica-seccion {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 15px;
+        border-radius: 20px;
+        margin-top: 20px;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-# Título modificado para forzar la actualización
 st.markdown("<h1 class='titulo-nuevo'>🌹 Una pregunta desde mi corazón 🌹</h1>", unsafe_allow_html=True)
 
-# TEXTO ACTUALIZADO (El que tú escribiste)
+# Carta con tu texto personalizado
 st.markdown(f"""
     <div class="carta-contenedor">
         <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
@@ -74,7 +80,11 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# Imagen foto.jpg
+# Sección de Música: Winter Bear
+st.markdown("<div class='musica-seccion'>🎵 Dale play a nuestra canción: <b>Winter Bear</b></div>", unsafe_allow_html=True)
+st.video("https://www.youtube.com/watch?v=pk7ESz6vtyA")
+
+# Foto
 try:
     st.image("foto.jpg", use_container_width=True)
 except:
