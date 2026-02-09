@@ -2,13 +2,13 @@ import streamlit as st
 import random
 
 # Configuración de la página
-st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="💖")
+st.set_page_config(page_title="San Valentín para Lubaloo ❤️", page_icon="🌹")
 
-# Estilos personalizados para un ambiente romántico
+# Estilos personalizados: Diseño más romántico y limpio
 st.markdown("""
     <style>
     .stApp {
-        background-color: #fff5f7;
+        background-color: #fff0f3;
     }
     .stButton>button {
         width: 100%;
@@ -19,82 +19,73 @@ st.markdown("""
         border: none;
         font-weight: bold;
         font-size: 18px;
-        transition: 0.3s;
+        box-shadow: 0px 4px 10px rgba(255, 75, 107, 0.3);
     }
     .stButton>button:hover {
-        background-color: #c9184a;
+        background-color: #ff758f;
         color: white;
-        transform: scale(1.05);
+        transform: translateY(-2px);
     }
-    h1 {
-        color: #c9184a !important;
-        text-align: center;
-        font-family: 'Georgia', serif;
-    }
-    .carta-amor {
+    .carta-contenedor {
         background-color: white;
         padding: 30px;
         border-radius: 20px;
-        border: 2px solid #ffb3c1;
-        box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+        border-left: 10px solid #ff4b6b;
+        box-shadow: 0px 10px 25px rgba(0,0,0,0.05);
         color: #590d22;
-        font-size: 18px;
-        line-height: 1.6;
-        text-align: justify;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
-    .destaque {
+    .titulo-san-valentin {
         color: #c9184a;
-        font-weight: bold;
-        font-size: 22px;
         text-align: center;
-        display: block;
-        margin-top: 10px;
+        font-family: 'Georgia', serif;
+        font-weight: bold;
     }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("💌 Una carta para ti...")
+st.markdown("<h1 class='titulo-san-valentin'>💖 Una propuesta especial...</h1>", unsafe_allow_html=True)
 
-# Sección sentimental detallada
+# Carta con enfoque en San Valentín y sus 10 meses
 st.markdown(f"""
-    <div class="carta-amor">
-        Mi pequeña <b>Lubaloo</b>,<br><br>
-        Desde que llegaste a mi vida, cada día ha sido una aventura nueva. No se trata solo de los momentos grandes, 
-        sino de las risas compartidas, de cómo me apoyas y de la forma en que haces que todo sea mejor con solo estar presente. <br><br>
-        Llevamos <b>10 meses</b> construyendo algo que para mí es lo más valioso que tengo. Me encanta aprender a tu lado, 
-        crecer contigo y ver cómo nuestra historia se escribe con cada detalle. Eres mi persona favorita y no imagino 
-        celebrar un día como hoy con nadie más que contigo.<br><br>
-        Gracias por ser tú, por tu paciencia y por todo el amor que me das.
-        <span class="destaque">¡Felices 10 meses, mi amor! 🌹</span>
+    <div class="carta-contenedor">
+        <p style="font-size: 20px;">Mi querida <b>Lubaloo</b>,</p>
+        <p style="font-size: 18px; line-height: 1.6;">
+            Llegar a estos <b>10 meses</b> a tu lado ha sido el mejor regalo que la vida me ha dado. 
+            Contigo he aprendido que el amor está en los detalles, en las risas y en el apoyo incondicional. <br><br>
+            Se acerca el 14 de febrero, y no hay nadie en este mundo con quien prefiera compartir 
+            la magia de <b>San Valentín</b> que contigo. Eres mi alegría, mi paz y mi persona favorita.
+        </p>
+        <p style="text-align: center; font-weight: bold; font-size: 22px; color: #ff4b6b;">
+            ¿Me harías el honor de ser mi San Valentín? 🌹
+        </p>
     </div>
     """, unsafe_allow_html=True)
 
-# Imagen con enlace directo para evitar errores de disponibilidad
-st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bmZqZzR4eXh4eXh4eXh4eXh4eXh4eXh4eXh4eXh4JnB0PWEmZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/K67869X0z7SOf2R809/giphy.gif")
+# IMAGEN SOLUCIONADA: Usamos un enlace directo a un archivo GIF estático para evitar bloqueos
+# Si esta falla, es porque el servidor de Streamlit tiene un firewall; 
+# en ese caso, te recomiendo descargar el gif y subirlo a tu GitHub con el nombre "amor.gif"
+st.image("https://raw.githubusercontent.com/StevS98/assets/main/love-heart.gif", use_container_width=True)
 
-st.markdown("<h2 style='text-align: center; color: #c9184a; margin-top: 20px;'>¿Aceptarías ser mi San Valentín este año?</h2>", unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 
 with col1:
-    if st.button("¡SÍ, ACEPTO! 😍"):
+    if st.button("¡SÍ, Mil veces sí! 😍"):
         st.balloons()
-        st.success("¡Me haces el hombre más feliz del mundo! Te amo demasiado. ❤️")
-        st.confetti = True # Solo para lógica visual
+        st.success("¡Eres lo mejor que me ha pasado! Prometo que será un San Valentín inolvidable. Te amo. ❤️")
 
 with col2:
-    # Botón juguetón para el "No"
     if st.button("No... 😢"):
-        respuestas_no = [
-            "¿Segura? Mira que hay chocolates involucrados... 🍫",
-            "Ese botón está roto, intenta con el rosa de al lado. ✨",
-            "¡Error del sistema! Tu corazón dice que SÍ. ❤️",
-            "Piénsalo bien, mi pequeña Lubaloo... 🌹",
-            "No acepto un no por respuesta hoy. 😊"
+        frases = [
+            "¿Segura? El botón de 'SÍ' brilla más... ✨",
+            "Oops, parece que este botón tiene un error, intenta el otro. 😊",
+            "¡No se puede decir que no a Justin hoy! 🌹",
+            "Piénsalo... habrá muchos mimos y sorpresas. 🍫"
         ]
-        st.warning(random.choice(respuestas_no))
+        st.warning(random.choice(frases))
 
-# Pie de página final
+# Pie de página
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #ff4b6b; font-weight: bold;'>Hecho con todo mi corazón por Justin ✨</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #800f2f;'>Con todo mi amor para Lubaloo — Justin 2026</p>", unsafe_allow_html=True)
