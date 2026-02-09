@@ -6,7 +6,7 @@ import os
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹", layout="centered")
 
-# --- 2. ESTILOS CSS (LLUVIA + COLORES + SNOOPY) ---
+# --- 2. ESTILOS CSS (ESTILOS COMPLETOS) ---
 st.markdown("""
     <style>
     /* FONDO DE CORAZONES ESTÁTICO */
@@ -16,7 +16,7 @@ st.markdown("""
         background-attachment: fixed;
     }
 
-    /* ANIMACIÓN DE CAÍDA (LLUVIA DE CORAZONES) - ¡REGRESÓ! */
+    /* ANIMACIÓN DE CAÍDA (LLUVIA DE CORAZONES) */
     @keyframes falling {
         0% { transform: translateY(-10vh); opacity: 0; }
         50% { opacity: 1; }
@@ -27,7 +27,7 @@ st.markdown("""
         color: #ff4b6b;
         font-size: 20px;
         animation: falling 8s linear infinite;
-        z-index: 0; /* Detrás del contenido */
+        z-index: 0;
     }
 
     /* CARTA PRINCIPAL */
@@ -41,50 +41,45 @@ st.markdown("""
         margin-bottom: 20px;
         text-align: justify;
         position: relative;
-        z-index: 1; /* Delante de la lluvia */
+        z-index: 1;
     }
 
-    /* --- ESTILOS DE CAJAS (EXPANDERS) - COLORES ROSADOS --- */
-    /* Encabezado (Título) */
+    /* --- ESTILOS DE CAJAS (EXPANDERS) --- */
     .streamlit-expanderHeader {
-        background-color: #ffe5ec !important; /* Rosa claro */
-        color: #d61c4e !important; /* Rojo fuerte */
+        background-color: #ffe5ec !important;
+        color: #d61c4e !important;
         border: 2px solid #ffcad4 !important;
         border-radius: 10px !important;
         font-weight: bold !important;
     }
-    
-    /* Contenido interno */
     .streamlit-expanderContent {
-        background-color: #fff0f3 !important; /* Blanco rosado muy suave */
+        background-color: #fff0f3 !important;
         border: 1px solid #ffcad4 !important;
         border-top: none !important;
         border-radius: 0 0 10px 10px !important;
         color: #880d1e !important;
     }
     
-    /* Compatibilidad extra para navegadores */
-    details {
-        background-color: #ffe5ec;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        border: 2px solid #ffcad4;
-        position: relative;
-        z-index: 1;
-    }
-    summary {
-        background-color: #ffe5ec;
-        color: #d61c4e;
-        font-weight: bold;
-        padding: 10px;
-        border-radius: 10px;
-    }
+    /* Compatibilidad navegadores */
+    details { background-color: #ffe5ec; border-radius: 10px; margin-bottom: 10px; border: 2px solid #ffcad4; }
+    summary { background-color: #ffe5ec; color: #d61c4e; font-weight: bold; padding: 10px; border-radius: 10px; }
     
-    /* SIDEBAR */
+    /* SIDEBAR ESTILIZADO */
     section[data-testid="stSidebar"] {
         background-color: rgba(255, 255, 255, 0.9);
         border-right: 3px solid #ffcad4;
-        z-index: 2;
+    }
+
+    /* CAJITAS DE DATOS EN SIDEBAR */
+    .dato-box {
+        background-color: #fff0f3;
+        padding: 10px;
+        border-radius: 10px;
+        border-left: 5px solid #ff4b6b;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #880d1e;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
     }
 
     /* TIMER */
@@ -94,8 +89,7 @@ st.markdown("""
         border: 2px solid #ff2e63;
         text-align: center;
         padding: 5px;
-        position: relative;
-        z-index: 1;
+        position: relative; z-index: 1;
     }
     div[data-testid="stMetricLabel"] { color: #ff2e63 !important; font-weight: bold; }
     div[data-testid="stMetricValue"] { color: #d61c4e !important; }
@@ -111,8 +105,7 @@ st.markdown("""
         font-size: 18px;
         border: none;
         box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-        position: relative;
-        z-index: 1;
+        position: relative; z-index: 1;
     }
     .stButton>button:hover { background-color: #ff0040; transform: scale(1.05); }
     
@@ -122,10 +115,9 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# --- 3. FUNCIÓN DE LA LLUVIA DE CORAZONES ---
+# --- 3. LLUVIA DE CORAZONES ---
 def lluvia_corazones():
     html_corazones = ""
-    # Generamos 20 corazones aleatorios
     for _ in range(20):
         left = random.randint(0, 100)
         delay = random.random() * 5
@@ -134,29 +126,52 @@ def lluvia_corazones():
         html_corazones += f"<div class='corazon-flotante' style='left: {left}%; animation-delay: {delay}s; animation-duration: {duration}s; font-size: {size}px;'>❤️</div>"
     st.markdown(html_corazones, unsafe_allow_html=True)
 
-# ¡Activamos la lluvia!
 lluvia_corazones()
 
-# --- 4. BARRA LATERAL (SNOOPY) ---
+# --- 4. BARRA LATERAL (¡AHORA MÁS LLENA!) ---
 with st.sidebar:
     st.markdown("<h2 style='text-align: center; color: #d61c4e;'>Nuestra Historia ❤️</h2>", unsafe_allow_html=True)
     st.markdown("---")
-    st.write("**💑 Protagonistas:** Justin & Lubaloo")
-    st.write("**🗓️ Tiempo Juntos:** 10 Meses")
-    st.write("**🎶 Nuestra Canción:** Winter Bear")
-    st.write("**📍 Próxima parada:** San Valentín")
+    
+    # Tarjetas de datos para llenar espacio
+    st.markdown("""
+    <div class="dato-box">
+        <strong>💑 Protagonistas:</strong><br>Justin & Lubaloo
+    </div>
+    <div class="dato-box">
+        <strong>🗓️ Tiempo Juntos:</strong><br>10 Meses llenos de amor
+    </div>
+    <div class="dato-box">
+        <strong>🎶 Nuestra Canción:</strong><br>Winter Bear 🐻❄️
+    </div>
+    <div class="dato-box">
+        <strong>📍 Próxima parada:</strong><br>San Valentín
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.write("")
+    st.markdown("**📈 Nivel de Amor: Camino al Año**")
+    st.progress(10/12) # Barra de progreso (10 meses de 12)
+    
     st.markdown("---")
     
-    # LÓGICA DE SNOOPY: Busca tu archivo primero
+    # SNOOPY
     if os.path.exists("snoopy.jpg"):
         st.image("snoopy.jpg", width=200)
     elif os.path.exists("snoopy.png"):
         st.image("snoopy.png", width=200)
     else:
-        # Enlace de respaldo (Wikimedia) por si no has subido la foto aún
-        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/240px-Heart_coraz%C3%B3n.svg.png", width=150, caption="¡Sube snoopy.jpg a GitHub!")
+        st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/240px-Heart_coraz%C3%B3n.svg.png", width=150)
 
-    st.markdown("<p style='text-align: center; font-size: 14px; font-weight: bold; color: #d61c4e; margin-top: 10px;'>Juntos x Siempre</p>", unsafe_allow_html=True)
+    # Frase final para llenar el fondo
+    st.markdown("""
+    <div style="text-align: center; margin-top: 20px; background-color: #ffe5ec; padding: 10px; border-radius: 10px; border: 1px dashed #ff4b6b;">
+        <p style="font-size: 14px; font-style: italic; color: #d61c4e; margin: 0;">
+            "Contigo cada día es una nueva aventura." <br> 
+            <b>Juntos x Siempre</b>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # --- 5. ENCABEZADO Y TIMER ---
 st.markdown("<h1>🌹 Para mi pequeña Lubaloo 🌹</h1>", unsafe_allow_html=True)
@@ -200,7 +215,7 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# --- 7. RAZONES (CON FONDO ROSADO) ---
+# --- 7. RAZONES ---
 st.markdown("<h3>💖 3 Razones por las que te elijo</h3>", unsafe_allow_html=True)
 col_a, col_b, col_c = st.columns(3)
 with col_a:
