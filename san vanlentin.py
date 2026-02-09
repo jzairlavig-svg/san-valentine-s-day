@@ -3,7 +3,7 @@ import random
 import os
 
 # Configuración de la página
-st.set_page_config(page_title="San Valentín para Lubaloo ❤️", page_icon="🌹")
+st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹")
 
 # Estilos personalizados
 st.markdown("""
@@ -60,7 +60,7 @@ st.markdown("""
 
 st.markdown("<h1 class='titulo-nuevo'>🌹 Una pregunta desde mi corazón 🌹</h1>", unsafe_allow_html=True)
 
-# Carta con tu texto personalizado
+# Carta con tu mensaje para los 10 meses
 st.markdown(f"""
     <div class="carta-contenedor">
         <p style="font-size: 22px; font-weight: bold; color: #c9184a;">Mi adorada Lubaloo,</p>
@@ -80,16 +80,16 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# SECCIÓN DE AUDIO MEJORADA
+# SECCIÓN DE AUDIO OPTIMIZADA
+st.markdown("<p class='musica-texto'>🎵 Dale play para escuchar Winter Bear mientras lees...</p>", unsafe_allow_html=True)
 if os.path.exists('musica.mp3'):
-    with open('musica.mp3', 'rb') as audio_file:
-        audio_bytes = audio_file.read()
-    st.markdown("<p class='musica-texto'>🎵 Dale play para acompañar este momento...</p>", unsafe_allow_html=True)
-    st.audio(audio_bytes, format='audio/mp3')
+    with open('musica.mp3', 'rb') as f:
+        audio_data = f.read()
+    st.audio(audio_data, format='audio/mp3', start_time=0)
 else:
-    st.info("Cargando nuestra canción... ❤️ (Asegúrate de que el archivo se llame musica.mp3)")
+    st.warning("No se encontró el archivo musica.mp3. Asegúrate de que esté en tu GitHub.")
 
-# Foto
+# Imagen
 try:
     st.image("foto.jpg", use_container_width=True)
 except:
