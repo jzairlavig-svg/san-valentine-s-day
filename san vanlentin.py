@@ -1,5 +1,6 @@
 import streamlit as st
 import random
+import os
 
 # Configuración de la página
 st.set_page_config(page_title="San Valentín para Lubaloo ❤️", page_icon="🌹")
@@ -79,14 +80,14 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# SECCIÓN DE AUDIO (Solo canción, sin video)
-try:
-    audio_file = open('musica.mp3', 'rb')
-    audio_bytes = audio_file.read()
+# SECCIÓN DE AUDIO MEJORADA
+if os.path.exists('musica.mp3'):
+    with open('musica.mp3', 'rb') as audio_file:
+        audio_bytes = audio_file.read()
     st.markdown("<p class='musica-texto'>🎵 Dale play para acompañar este momento...</p>", unsafe_allow_html=True)
     st.audio(audio_bytes, format='audio/mp3')
-except:
-    st.info("Sube el archivo 'musica.mp3' a tu GitHub para escuchar Winter Bear ❤️")
+else:
+    st.info("Cargando nuestra canción... ❤️ (Asegúrate de que el archivo se llame musica.mp3)")
 
 # Foto
 try:
@@ -97,7 +98,6 @@ except:
 st.markdown("<br>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
-
 with col1:
     if st.button("¡SÍ, ACEPTO! 😍"):
         st.balloons()
