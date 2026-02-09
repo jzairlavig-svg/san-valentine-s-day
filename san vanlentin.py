@@ -71,25 +71,25 @@ st.markdown("""
 # --- 3. ENCABEZADO ---
 st.markdown("<h1>🌹 Para mi pequeña Lubaloo 🌹</h1>", unsafe_allow_html=True)
 
-# --- 4. TIMER CORRECTO (Ajustado a hora Perú/Colombia) ---
+# --- 4. TIMER (Lógica ajustada) ---
 def get_time_left():
-    # Ajustamos a UTC-5 (Hora Perú/Colombia) manualmente para no depender de librerías externas complejas
+    # Obtenemos la hora actual del servidor y le restamos 5 horas para ajustar a Perú/Colombia
     ahora_utc = datetime.utcnow()
     ahora_peru = ahora_utc - timedelta(hours=5)
     
-    # Objetivo: 14 de Febrero a las 00:00:00
+    # Objetivo: 14 de Febrero a las 00:00:00 (Medianoche)
     target_year = ahora_peru.year
     target = datetime(target_year, 2, 14)
     
-    # Si ya pasó el 14 de feb de este año, apuntar al siguiente
-    if ahora_peru > target + timedelta(days=1): # Damos 1 día de margen para que se vea "00:00:00" el propio día
+    # Si ya pasó el 14 de febrero de este año, apuntamos al del año siguiente
+    if ahora_peru > target + timedelta(days=1): 
         target = datetime(target_year + 1, 2, 14)
     
     restante = target - ahora_peru
     
-    # Si es el día exacto (menos de 24h pasadas desde el inicio del 14), mostrar mensaje especial
-    if restante.days < 0:
-        return 0, 0, 0, 0, True # Es San Valentín!
+    # Si estamos en el mismo día (negativo pero menos de 24h), es hoy
+    if restante.total_seconds() < 0 and restante.days == -1:
+        return 0, 0, 0, 0, True # Es San Valentín
         
     return restante.days, restante.seconds // 3600, (restante.seconds // 60) % 60, restante.seconds % 60, False
 
@@ -98,16 +98,17 @@ dias, horas, minutos, segundos, es_hoy = get_time_left()
 st.markdown("<h3 style='margin-bottom: 10px;'>⏳ Cuenta regresiva para San Valentín</h3>", unsafe_allow_html=True)
 
 if es_hoy:
+    st.balloons()
     st.success("¡FELIZ SAN VALENTÍN! ❤️🌹✨")
 else:
-    # Mostramos el timer en columnas bonitas
+    # Mostramos el timer
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Días", dias)
     col2.metric("Horas", horas)
     col3.metric("Mins", minutos)
     col4.metric("Segs", segundos)
 
-# --- 5. LA CARTA ---
+# --- 5. LA CARTA (Aquí el código de timer funciona bien, no afecta el texto) ---
 st.markdown(f"""
     <div class="carta-contenedor">
         <p style="font-size: 20px; font-weight: bold; color: #d61c4e;">Mi adorada Lubaloo,</p>
@@ -137,7 +138,7 @@ with col_c:
 
 st.write("") 
 
-# --- 7. MÚSICA ESCONDIDA ---
+# --- 7. MÚSICA ESCONDIDA (Menú Desplegable) ---
 with st.expander("🎵 Música de fondo: Winter Bear (Clic aquí)"):
     st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
 
