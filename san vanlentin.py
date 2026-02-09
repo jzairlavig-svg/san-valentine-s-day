@@ -4,17 +4,32 @@ from datetime import datetime, timedelta
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹", layout="centered")
 
-# --- 2. ESTILOS CSS (Fondo de Corazones + Timer Bonito) ---
+# --- 2. ESTILOS CSS (Fondo, Animación y Diseño) ---
 st.markdown("""
     <style>
-    /* FONDO DE CORAZONES */
+    /* FONDO DE CORAZONES ESTÁTICO */
     .stApp {
         background-color: #ffdde1;
         background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 56C14.327 40 4 28 4 16 4 9.373 9.373 4 16 4c4.18 0 7.843 2.14 10 5.36C28.157 6.14 31.82 4 36 4c6.627 0 12 5.373 12 12 0 12-10.327 24-28 40z' fill='%23eebbc3' fill-opacity='0.6' fill-rule='evenodd'/%3E%3C/svg%3E");
         background-attachment: fixed;
     }
+
+    /* ANIMACIÓN DE CAÍDA (LLUVIA DE CORAZONES) */
+    @keyframes falling {
+        0% { transform: translateY(-10vh); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(100vh); opacity: 0; }
+    }
     
-    /* CAJA DE LA CARTA */
+    .corazon-flotante {
+        position: fixed;
+        color: #ff4b6b;
+        font-size: 20px;
+        animation: falling 8s linear infinite;
+        z-index: 0; /* Detrás del texto */
+    }
+
+    /* CAJA PRINCIPAL DE LA CARTA */
     .carta-contenedor {
         background-color: rgba(255, 255, 255, 0.95);
         padding: 30px;
@@ -24,25 +39,26 @@ st.markdown("""
         color: #880d1e;
         margin-bottom: 20px;
         text-align: justify;
+        position: relative;
+        z-index: 1; /* Delante de la lluvia */
     }
     
-    /* ESTILO DEL TIMER (Métricas) */
+    /* SIDEBAR (Barra lateral) */
+    section[data-testid="stSidebar"] {
+        background-color: rgba(255, 255, 255, 0.7);
+        border-right: 2px solid #ffcad4;
+    }
+
+    /* ESTILO DEL TIMER */
     div[data-testid="stMetric"] {
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 15px;
-        padding: 10px;
-        border: 2px solid #ff2e63;
-        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        padding: 5px;
+        border: 1px solid #ff2e63;
         text-align: center;
     }
-    div[data-testid="stMetricLabel"] {
-        color: #d61c4e !important;
-        font-weight: bold;
-    }
-    div[data-testid="stMetricValue"] {
-        color: #ff2e63 !important;
-        font-size: 28px !important;
-    }
+    div[data-testid="stMetricLabel"] { font-size: 14px !important; color: #d61c4e !important; font-weight: bold; }
+    div[data-testid="stMetricValue"] { font-size: 24px !important; color: #ff2e63 !important; }
 
     /* BOTONES */
     .stButton>button {
@@ -54,61 +70,79 @@ st.markdown("""
         font-weight: bold;
         font-size: 18px;
         border: none;
-        transition: all 0.3s ease;
         box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
     }
-    .stButton>button:hover {
-        background-color: #ff0040;
-        transform: scale(1.03);
-    }
+    .stButton>button:hover { background-color: #ff0040; transform: scale(1.03); }
     
-    /* TÍTULOS */
-    h1 { color: #d61c4e !important; text-shadow: 2px 2px 0px white; font-family: serif; text-align: center; margin-bottom: 10px; }
+    /* TEXTOS */
+    h1 { color: #d61c4e !important; text-shadow: 2px 2px 0px white; font-family: serif; text-align: center; }
     h3 { color: #ff2e63 !important; text-align: center; font-family: sans-serif; font-size: 20px; margin-top: 20px;}
     </style>
     """, unsafe_allow_html=True)
 
-# --- 3. ENCABEZADO ---
+# --- 3. CREAR LLUVIA DE CORAZONES ---
+# Esto genera corazones aleatorios en el fondo para llenar los vacíos
+import random
+def lluvia_corazones():
+    html_corazones = ""
+    for _ in range(15): # 15 corazones flotando
+        left = random.randint(0, 100)
+        delay = random.random() * 5
+        duration = random.randint(5, 10)
+        size = random.randint(10, 30)
+        html_corazones += f"""
+        <div class='corazon-flotante' style='left: {left}%; animation-delay: {delay}s; animation-duration: {duration}s; font-size: {size}px;'>
+            ❤️
+        </div>
+        """
+    st.markdown(html_corazones, unsafe_allow_html=True)
+
+lluvia_corazones()
+
+# --- 4. BARRA LATERAL (SIDEBAR) ---
+# Aquí llenamos el lado izquierdo
+with st.sidebar:
+    st.markdown("<h2 style='text-align: center; color: #d61c4e;'>Nuestra Historia ❤️</h2>", unsafe_allow_html=True)
+    st.markdown("---")
+    st.write("**💑 Protagonistas:** Justin & Lubaloo")
+    st.write("**🗓️ Tiempo Juntos:** 10 Meses")
+    st.write("**🎶 Nuestra Canción:** Winter Bear")
+    st.write("**📍 Próxima parada:** San Valentín")
+    st.markdown("---")
+    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5/LpDHGcnJ6Q4/giphy.gif", use_container_width=True) # Un osito lindo
+    st.markdown("<p style='text-align: center; font-size: 12px;'>Juntos x Siempre</p>", unsafe_allow_html=True)
+
+# --- 5. ENCABEZADO Y TIMER ---
 st.markdown("<h1>🌹 Para mi pequeña Lubaloo 🌹</h1>", unsafe_allow_html=True)
 
-# --- 4. TIMER (Lógica ajustada) ---
+# Lógica del Timer
 def get_time_left():
-    # Obtenemos la hora actual del servidor y le restamos 5 horas para ajustar a Perú/Colombia
     ahora_utc = datetime.utcnow()
     ahora_peru = ahora_utc - timedelta(hours=5)
-    
-    # Objetivo: 14 de Febrero a las 00:00:00 (Medianoche)
     target_year = ahora_peru.year
     target = datetime(target_year, 2, 14)
-    
-    # Si ya pasó el 14 de febrero de este año, apuntamos al del año siguiente
     if ahora_peru > target + timedelta(days=1): 
         target = datetime(target_year + 1, 2, 14)
-    
     restante = target - ahora_peru
-    
-    # Si estamos en el mismo día (negativo pero menos de 24h), es hoy
     if restante.total_seconds() < 0 and restante.days == -1:
-        return 0, 0, 0, 0, True # Es San Valentín
-        
+        return 0, 0, 0, 0, True 
     return restante.days, restante.seconds // 3600, (restante.seconds // 60) % 60, restante.seconds % 60, False
 
 dias, horas, minutos, segundos, es_hoy = get_time_left()
 
-st.markdown("<h3 style='margin-bottom: 10px;'>⏳ Cuenta regresiva para San Valentín</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='margin-bottom: 10px;'>⏳ Countdown to Valentine's</h3>", unsafe_allow_html=True)
 
 if es_hoy:
     st.balloons()
     st.success("¡FELIZ SAN VALENTÍN! ❤️🌹✨")
 else:
-    # Mostramos el timer
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Días", dias)
-    col2.metric("Horas", horas)
-    col3.metric("Mins", minutos)
-    col4.metric("Segs", segundos)
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Días", dias)
+    c2.metric("Horas", horas)
+    c3.metric("Mins", minutos)
+    c4.metric("Segs", segundos)
 
-# --- 5. LA CARTA (Aquí el código de timer funciona bien, no afecta el texto) ---
+# --- 6. LA CARTA ---
 st.markdown(f"""
     <div class="carta-contenedor">
         <p style="font-size: 20px; font-weight: bold; color: #d61c4e;">Mi adorada Lubaloo,</p>
@@ -123,8 +157,8 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# --- 6. RAZONES ---
-st.markdown("<h3>💖 3 Razones por las que te elijo (Clic para ver)</h3>", unsafe_allow_html=True)
+# --- 7. RAZONES ---
+st.markdown("<h3>💖 3 Razones por las que te elijo</h3>", unsafe_allow_html=True)
 col_a, col_b, col_c = st.columns(3)
 with col_a:
     with st.expander("Tu Sonrisa ✨"):
@@ -138,19 +172,19 @@ with col_c:
 
 st.write("") 
 
-# --- 7. MÚSICA ESCONDIDA (Menú Desplegable) ---
+# --- 8. MÚSICA ESCONDIDA ---
 with st.expander("🎵 Música de fondo: Winter Bear (Clic aquí)"):
     st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
 
 st.write("")
 
-# --- 8. FOTO ---
+# --- 9. FOTO ---
 try:
     st.image("foto.jpg", caption="Tú y Yo ❤️", use_container_width=True)
 except:
     st.info("⚠️ Sube tu foto 'foto.jpg' para verla aquí.")
 
-# --- 9. PREGUNTA FINAL ---
+# --- 10. PREGUNTA FINAL ---
 st.markdown("""
     <div class="carta-contenedor" style="text-align: center; border-color: #ff2e63; margin-top: 20px;">
         <p style="font-size: 22px; font-weight: bold; color: #ff2e63;">
