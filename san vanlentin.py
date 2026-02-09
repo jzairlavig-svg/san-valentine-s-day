@@ -1,42 +1,41 @@
 import streamlit as st
-import random
 from datetime import datetime
 
 # --- 1. CONFIGURACIÓN ---
 st.set_page_config(page_title="Para mi pequeña Lubaloo ❤️", page_icon="🌹", layout="centered")
 
-# --- 2. ESTILOS CSS (Fondo de Corazones + Diseño Bonito) ---
+# --- 2. ESTILOS CSS (Fondo de Corazones + Diseño Limpio) ---
 st.markdown("""
     <style>
-    /* FONDO DE CORAZONES */
+    /* FONDO DE CORAZONES (SVG Incrustado para carga rápida) */
     .stApp {
         background-color: #ffdde1;
         background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32 56C14.327 40 4 28 4 16 4 9.373 9.373 4 16 4c4.18 0 7.843 2.14 10 5.36C28.157 6.14 31.82 4 36 4c6.627 0 12 5.373 12 12 0 12-10.327 24-28 40z' fill='%23eebbc3' fill-opacity='0.6' fill-rule='evenodd'/%3E%3C/svg%3E");
         background-attachment: fixed;
     }
     
-    /* CAJAS PRINCIPALES */
+    /* CONTENEDOR DE LA CARTA */
     .carta-contenedor {
         background-color: rgba(255, 255, 255, 0.95);
         padding: 30px;
         border-radius: 20px;
-        border: 3px solid #ffcad4;
-        box-shadow: 0px 10px 25px rgba(214, 28, 78, 0.15);
+        border: 2px solid #ffcad4;
+        box-shadow: 0px 8px 20px rgba(214, 28, 78, 0.15);
         color: #880d1e;
         margin-bottom: 20px;
         text-align: justify;
     }
     
-    /* CONTADOR */
+    /* CAJA DEL CONTADOR */
     .contador-box {
-        background-color: #ff2e63;
+        background: linear-gradient(135deg, #ff2e63 0%, #ff4b6b 100%);
         color: white;
         padding: 15px;
         border-radius: 15px;
         text-align: center;
         font-weight: bold;
-        font-size: 20px;
-        margin-bottom: 20px;
+        font-size: 18px;
+        margin-bottom: 25px;
         box-shadow: 0px 5px 15px rgba(255, 46, 99, 0.3);
     }
     
@@ -44,24 +43,25 @@ st.markdown("""
     .stButton>button {
         width: 100%;
         border-radius: 50px;
-        height: 55px;
+        height: 50px;
         background-color: #ff2e63;
         color: white;
         font-weight: bold;
         font-size: 18px;
         border: none;
         transition: all 0.3s ease;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
     }
     .stButton>button:hover {
-        background-color: #ff4b6b;
-        transform: scale(1.05);
+        background-color: #ff0040;
+        transform: scale(1.03);
     }
     
-    /* TEXTOS */
-    h1 { color: #d61c4e !important; text-shadow: 2px 2px 0px white; font-family: serif; text-align: center;}
-    h3 { color: #ff2e63 !important; text-align: center; font-family: serif; }
+    /* TÍTULOS */
+    h1 { color: #d61c4e !important; text-shadow: 2px 2px 0px white; font-family: serif; text-align: center; margin-bottom: 10px; }
+    h3 { color: #ff2e63 !important; text-align: center; font-family: sans-serif; font-size: 20px; margin-top: 20px;}
     
-    /* FOTOS */
+    /* IMAGEN */
     img { border-radius: 20px; border: 4px solid white; box-shadow: 0px 5px 15px rgba(0,0,0,0.1); }
     </style>
     """, unsafe_allow_html=True)
@@ -69,7 +69,7 @@ st.markdown("""
 # --- 3. ENCABEZADO Y CONTADOR ---
 st.markdown("<h1>🌹 Para mi pequeña Lubaloo 🌹</h1>", unsafe_allow_html=True)
 
-# Lógica del contador para San Valentín
+# Lógica del contador
 hoy = datetime.now()
 san_valentin = datetime(hoy.year, 2, 14)
 if hoy > san_valentin:
@@ -80,7 +80,7 @@ horas = falta.seconds // 3600
 
 st.markdown(f"""
     <div class='contador-box'>
-        ⏳ Faltan {dias} días y {horas} horas para nuestro San Valentín ✨
+        ⏳ Faltan {dias} días y {horas} horas para San Valentín ✨
     </div>
     """, unsafe_allow_html=True)
 
@@ -99,8 +99,8 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-# --- 5. NUEVA SECCIÓN: RAZONES (Para llenar espacio) ---
-st.markdown("<h3>💖 3 Cosas que amo de ti... (Ábrelas)</h3>", unsafe_allow_html=True)
+# --- 5. RAZONES POR LAS QUE TE AMO ---
+st.markdown("<h3>💖 3 Razones por las que te elijo (Clic para ver)</h3>", unsafe_allow_html=True)
 
 col_a, col_b, col_c = st.columns(3)
 with col_a:
@@ -113,22 +113,24 @@ with col_c:
     with st.expander("Nosotros 💑"):
         st.write("Amo la complicidad que tenemos y cómo nos entendemos con solo mirarnos.")
 
-st.write("") # Espacio
-
-# --- 6. MÚSICA Y FOTO ---
-st.markdown("<h3>🎵 Nuestra canción</h3>", unsafe_allow_html=True)
-st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
-
 st.write("") 
 
+# --- 6. MÚSICA ESCONDIDA (Menú Desplegable) ---
+# Aquí es donde escondemos el video para que no ocupe espacio
+with st.expander("🎵 Música de fondo: Winter Bear (Clic aquí)"):
+    st.video("https://www.youtube.com/watch?v=1iK-ttRjV-E")
+
+st.write("")
+
+# --- 7. FOTO ---
 try:
     st.image("foto.jpg", caption="Tú y Yo ❤️", use_container_width=True)
 except:
     st.info("⚠️ Sube tu foto 'foto.jpg' para verla aquí.")
 
-# --- 7. LA PREGUNTA FINAL ---
+# --- 8. PREGUNTA FINAL ---
 st.markdown("""
-    <div class="carta-contenedor" style="text-align: center; border-color: #ff2e63;">
+    <div class="carta-contenedor" style="text-align: center; border-color: #ff2e63; margin-top: 20px;">
         <p style="font-size: 22px; font-weight: bold; color: #ff2e63;">
             ¿Me harías el honor de ser mi San Valentín? 🌹
         </p>
